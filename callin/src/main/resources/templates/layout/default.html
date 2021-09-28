@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- head -->
+<head th:replace="fragments/head :: headFragment"></head>
+
+<body class="hold-transition sidebar-mini">
+
+	<div class="wrapper">
+
+		<!-- header -->
+		<nav th:replace="fragments/header :: headerFragment"></nav>
+
+		<!-- leftsidebar -->
+		<aside th:replace="fragments/leftsidebar :: leftsidebarFragment"></aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<div class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<th:block layout:fragment="customTitle"></th:block>
+					</div>
+				</div>
+				<!-- /.container-fluid -->
+			</div>
+			<!-- /.content-header -->
+
+			<!-- Main content -->
+			<div class="content">
+				<div class="container-fluid">
+					<th:block layout:fragment="customContents"></th:block>
+				</div>
+			</div>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Footer -->
+		<footer th:replace="fragments/footer :: footerFragment"></footer>
+
+	</div>
+	<!-- ./wrapper -->
+
+	<!-- REQUIRED SCRIPTS -->
+
+	<!-- jQuery -->
+	<script th:src="@{/AdminLTE/plugins/jquery/jquery.min.js}"></script>
+	<!-- Bootstrap -->
+	<script
+		th:src="@{/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<!-- AdminLTE -->
+	<script th:src="@{/AdminLTE/dist/js/adminlte.js}"></script>
+
+	<!-- OPTIONAL SCRIPTS -->
+	<script th:src="@{/AdminLTE/plugins/chart.js/Chart.min.js}"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script th:src="@{/AdminLTE/dist/js/demo.js}"></script>
+	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+	<script th:src="@{/AdminLTE/dist/js/pages/dashboard3.js}"></script>
+</body>
+</html>

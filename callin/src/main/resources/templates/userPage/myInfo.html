@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{layout/default}">
+
+	<th:block layout:fragment="customTitle">
+		<div class="col-sm-6">
+			<h1 class="m-0">회원정보</h1>
+		</div>
+	
+	</th:block>
+	
+	<!-- contents layout:fragment 정의 -->
+	<th:block layout:fragment="customContents">
+		SPRING BOOT LAYOUT <br>
+		<a class="btn btn-outline-primary btn-sm" th:href="@{/login}">회원정보</a>
+	</th:block>
+	
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!-- head -->
+<head th:fragment="headFragment">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title th:text="${title}">ksmart40기 프로젝트</title>
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome Icons -->
+<link rel="stylesheet"
+	th:href="@{/AdminLTE/plugins/fontawesome-free/css/all.min.css}">
+<!-- IonIcons -->
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" th:href="@{/AdminLTE/dist/css/adminlte.min.css}">
+
+<script type="text/javascript" th:src="@{/AdminLTE/plugins/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js}"></script>
+</head>
+</html>

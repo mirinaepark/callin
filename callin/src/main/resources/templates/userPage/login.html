@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+
+	<th:block layout:fragment="customTitle">
+		 <div class="col-sm-6">
+			<h1 class="m-0">로그인</h1>
+	     </div>
+	</th:block>
+	
+	<!-- contents layout:fragment 정의 -->
+	<th:block layout:fragment="customContents">
+		<section class="contents" th:align="center">
+			<div class="login-box">
+		  <!-- /.login-logo -->
+				<div class="card card-outline card-primary">
+					<div class="card-header text-center">
+						<a class="h1"><b></b>LOGIN</a>
+		    		</div>
+		    		
+		    		<div class="card-body">
+							<form th:action="@{/login}" method="post">
+								<div class="input-group mb-3">
+									<input type="text" class="form-control" placeholder="ID" name="id">
+									<div class="input-group-append">
+										<div class="input-group-text">
+											<span class="fas fa-envelope"></span>
+										</div>
+									</div>
+			       				</div>
+			       				
+								<div class="input-group mb-3">
+									<input type="password" class="form-control" placeholder="Password" name="password">
+									<div class="input-group-append">
+										<div class="input-group-text">
+							      			<span class="fas fa-lock"></span>
+							    		</div>
+							  		</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-8">
+								    	<div class="icheck-primary">
+								      		<input type="checkbox" id="remember">
+								      			<label for="remember">로그인 상태 유지</label>     			
+								    	</div>
+								    </div>
+									<div class="col-4">
+										<button type="submit" class="btn btn-primary btn-block">로그인</button>
+									</div>
+								</div>
+								
+		      				</form>
+		
+							<div class="social-auth-links text-center mt-2 mb-3">
+								<a href="#" class="btn btn-block btn-primary">
+							   		<i class="fab fa-facebook mr-2"></i> Facebook
+							  	</a>
+							</div>
+		      <!-- /.social-auth-links -->
+		
+							<p class="mb-1">
+								<a th:href="@{/idFind}">아이디/비밀번호 찾기</a>
+							</p>
+							<p class="mb-0">
+								<a th:href="@{/join}" class="text-center">회원가입</a>
+							</p>
+					</div>
+		    <!-- /.card-body -->
+				</div>
+		  <!-- /.card -->
+			</div>
+		</section>
+	</th:block>
+</html>

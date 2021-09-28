@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{layout/default}">
+
+<th:block layout:fragment="customTitle">
+	<div class="col-sm-6">
+		<h1 class="m-0">학생리스트</h1>
+	</div>
+
+</th:block>
+
+<!-- contents layout:fragment 정의 -->
+<th:block layout:fragment="customContents">
+	<div class="row">
+       	<div class="col-12">
+       		<div class="card">
+         			<!-- /card-header 영역 시작 -->
+            	<div class="card-header">
+	           		<div class="input-group mb-3">
+                  		<div class="input-group-prepend">
+		                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">조회</button>
+		                    <div class="dropdown-menu" style="">
+		                      	<a class="dropdown-item" href="#">아이디</a>
+		                      	<a class="dropdown-item" href="#">이름</a>
+		                      	<a class="dropdown-item" href="#">반</a>
+		                    </div>
+	                	</div>
+	                  <!-- /btn-group -->
+		            	<input type="text" class="form-control">
+			            <div class="input-group-append">
+							<button type="submit" class="btn btn-default">
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
+	                </div>
+          				
+				</div>
+				<!-- /card-header 영역 끝 -->
+				<!-- /card-body 영역 시작 -->
+				<div class="card-body table-responsive p-0">
+				  	<table class="table table-hover text-nowrap">
+				    	<thead>
+				      		<tr>
+						        <th>아이디</th>
+						        <th>비밀번호</th>
+						        <th>이름</th>
+						        <th>이메일</th>
+						        <th>주소</th>
+						        <th>가입일자</th>
+						    </tr>
+				    	</thead>
+				    	<tbody>
+				      		<tr th:each="ul : ${userList}">
+						        <td>
+						        	<a href="javascript:void(0)" th:text="${ul.userId}" class="userClassInfo"></a>
+						        </td>
+						        <td th:text="${ul.userPw}"></td>
+						        <td th:text="${ul.userName}"></td>
+						        <td th:text="${ul.userEmail}"></td>
+						        <td th:text="${ul.userAddr}"></td>
+						        <td th:text="${ul.userRegDate}"></td>
+				      		</tr>
+				    	</tbody>
+					</table>
+				</div>
+				<!-- /.card-body 영역 끝 -->
+			</div>
+			<!-- /.card 영역 끝-->
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	
+	$(function(){
+	   
+	  $('.userClassInfo').click(function(){
+	     
+	     var userId = $(this).text();      
+	     
+	     var request =  $.ajax({
+	          url: "/userList11", //요청 주소
+	          method: "GET", //요청 방식
+	          data: { userId : userId }, // input name->cateCode,  value->stName
+	          dataType: "json" //받아올 포맷방식
+	     });   
+	     request.done(function(data){
+	        
+	        console.log(data);
+	        //console.log(data.memberId, data.memberName, data.memberGender, data.memberBirth);
+	         
+	        var htmml= '';
+	        
+	        htmml += '<h3> <text class="text" style="color : #A9A9F5; font-weight: bold;"> 수업명 : </text>' + data.courseName;
+	        htmml += '<br> <text class="text" style="color : #A9A9F5; font-weight: bold;"> 담당강사 : </text>' + data.teacherId;
+            htmml += '<br> <text class="text" style="color : #A9A9F5; font-weight: bold;" > 수업시작일 : </text>' + data.classStartDate;
+            htmml += '<br> <text class="text" style="color : #A9A9F5; font-weight: bold;"> 수업종료일 : </text>' + data.classEndDate;
+            htmml += '<br> <text class="text" style="color : #A9A9F5; font-weight: bold;"> 수업요일 : </text>' + data.classProgressDay; + '</h3>'
+	     
+	        Swal.fire(htmml); 
+	     
+	     });
+	     request.fail(function( jqXHR, textStatus){
+	         alert( "Request failed: " + textStatus );
+	     }); 
+	});
+	});
+	
+	</script>
+</th:block>
+</html>

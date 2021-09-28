@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<nav th:fragment="headerFragment" class="main-header navbar navbar-expand navbar-white navbar-light">
+<!------------------------------------ 왼쪽 네비바 ---------------------------------------->
+		
+<!------------------------------------ 오른쪽 네비바 ---------------------------------------->
+		<ul class="navbar-nav ml-auto">
+			<li>
+				<a class="btn btn-outline-primary btn-sm" th:href="@{/login}">로그인</a>
+			</li>
+			<li>
+				<a class="btn btn-outline-primary btn-sm" th:href="@{/join}">회원가입</a>
+			</li>
+		</ul>
+
+</nav>
+</html>
