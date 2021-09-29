@@ -5,7 +5,7 @@
 
 <th:block layout:fragment="customTitle">
 	<div class="col-sm-6">
-		<h1 class="m-0">학생리스트</h1>
+		<h1 class="m-0">학생&강사&관리자 리스트</h1>
 	</div>
 
 </th:block>
@@ -23,7 +23,6 @@
 		                    <div class="dropdown-menu" style="">
 		                      	<a class="dropdown-item" href="#">아이디</a>
 		                      	<a class="dropdown-item" href="#">이름</a>
-		                      	<a class="dropdown-item" href="#">반</a>
 		                    </div>
 	                	</div>
 	                  <!-- /btn-group -->
@@ -46,8 +45,6 @@
 						        <th>비밀번호</th>
 						        <th>이름</th>
 						        <th>이메일</th>
-						        <th>주소</th>
-						        <th>가입일자</th>
 						    </tr>
 				    	</thead>
 				    	<tbody>
@@ -58,8 +55,6 @@
 						        <td th:text="${ul.userPw}"></td>
 						        <td th:text="${ul.userName}"></td>
 						        <td th:text="${ul.userEmail}"></td>
-						        <td th:text="${ul.userAddr}"></td>
-						        <td th:text="${ul.userRegDate}"></td>
 				      		</tr>
 				    	</tbody>
 					</table>
@@ -79,7 +74,7 @@
 	     var userId = $(this).text();      
 	     
 	     var request =  $.ajax({
-	          url: "/userList11", //요청 주소
+	          url: "/userIdClick", //요청 주소
 	          method: "GET", //요청 방식
 	          data: { userId : userId }, // input name->cateCode,  value->stName
 	          dataType: "json" //받아올 포맷방식

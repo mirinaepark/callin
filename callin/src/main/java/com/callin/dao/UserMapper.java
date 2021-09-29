@@ -11,6 +11,8 @@ public interface UserMapper {
 	
 	//회원 전체 조회
 	public List<UserDto> getUserList();
+	
+	//한명 회원 정보 조회
 	public UserDto getUserRead(String userId);
 	
 	//아이디 찾기

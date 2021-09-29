@@ -1,9 +1,5 @@
 package com.callin.service;
 
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +12,18 @@ public class UserService {
 	@Autowired
 	private UserMapper userMapper;
 	
-	
-	
-	//회원 전체 조회
-	public List<UserDto> getUserList() {
-		return userMapper.getUserList();
-	}
+	// 한명 회원 정보 조회
 	public UserDto getUserRead(String userId) {
-		return userMapper.getUserRead(userId);
+		// 화면에서 입력하여 보내준 회원 아이디
+		System.out.println("한명 회원 정보 조회 (UserService.java) : " + userId);
+		UserDto userDto = userMapper.getUserRead(userId);
+		
+		
+		if(userDto != null) {
+			System.out.println("데이터베이스에서 조회 해온 한명 회원의 정보가 담긴 Dto (UserService.java) : " + userDto.toString());
+		}
+		return userDto;
 	}
+	
+	
 }

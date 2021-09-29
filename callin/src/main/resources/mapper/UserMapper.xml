@@ -4,30 +4,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.callin.dao.UserMapper">
+
+
+	<!-- 전체 회원 조회 쿼리문 -->
 	<select id="getUserList" resultType="UserDto">
 		SELECT 
-			  m_id			AS userId
-			, m_pw			AS userPw
-			, m_name		AS userName
-			, m_email		AS userEmail
-			, m_addr		AS userAddr
-			, m_reg_date	AS userRegDate
-			, m_class		AS userClass
+			  user_id			AS userId
+			, user_pw			AS userPw
+			, user_name			AS userName
+			, user_email		AS userEmail
 		FROM 
-			tb_member
+			user_info
 	</select>
+	
+	
+	<!-- 한명 회원 조회 쿼리문 -->
 	<select id="getUserRead" resultType="UserDto" parameterType="String">
 		SELECT 
-			  m_id			AS userId
-			, m_pw			AS userPw
-			, m_name		AS userName
-			, m_email		AS userEmail
-			, m_addr		AS userAddr
-			, m_reg_date	AS userRegDate
-			, m_class		AS userClass
+			  user_id			AS userId
+			, user_pw			AS userPw
+			, user_name			AS userName
+			, user_email		AS userEmail
 		FROM 
-			tb_member
+			user_info
 		WHERE
-			m_id = #{userId}
+			user_id = #{userId}
 	</select>
 </mapper>
