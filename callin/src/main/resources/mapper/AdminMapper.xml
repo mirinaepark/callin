@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.callin.dao.AdminMapper">
+
+
+	<!-- 전체 회원 조회 쿼리문 -->
+	<select id="getUserList" resultType="UserDto">
+		SELECT 
+			  user_id			AS userId
+			, user_pw			AS userPw
+			, user_name			AS userName
+			, user_email		AS userEmail
+			, user_level		AS userLevel
+		FROM 
+			user_info
+	</select>
+	
+	<select id="getUserClass" resultType="ClassProgressDto" parameterType="String">
+		SELECT 
+			  sc.course_name			as courseName
+			, ui.user_name				as teacherName
+			, cp.class_start_date		as classStartDate
+			, cp.class_end_date			as classEndDate
+			, cp.class_progress_day		as classProgressDay
+			, cp.class_start_time		as classStartTime
+			, cp.class_end_time			as classEndTime
+		FROM 
+			class_progress	AS cp
+			left join
+			start_class		AS sc
+			on
+			cp.start_class_code = sc.start_class_code
+			LEFT join
+			user_info		AS ui
+			ON
+			cp.teacher_id = ui.user_id
+		WHERE 
+			student_id = #{userId};
+	</select>
+	
+	
+</mapper>

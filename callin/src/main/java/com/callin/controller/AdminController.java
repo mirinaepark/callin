@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.callin.domain.ClassProgressDto;
 import com.callin.domain.UserDto;
 import com.callin.service.AdminService;
 import com.callin.service.UserService;
@@ -38,14 +39,53 @@ public class AdminController {
 		return "adminPage/userList";
 	}
 	
+	
 	//회원 전체 조회에서 진행중인 수업확인하는 Ajax
 	@GetMapping(value="/userIdClick", produces = "application/json")
 	@ResponseBody
-	public UserDto userIdClick(Model model, @RequestParam("userId") String userId) {
-		UserDto userDto = userService.getUserRead(userId);
-		if(userDto == null) userDto = new UserDto();
-		return userDto;
+	public ClassProgressDto userIdClick(Model model, @RequestParam("userId") String userId) {
+		
+		System.out.println("화면에서 선택한 학생ID (AdminController.java) : " + userId);
+		
+		ClassProgressDto classDto = adminService.getUserClass(userId);
+		
+		if(classDto != null) {
+			System.out.println("한명 학생의 수업 정보 조회 결과 (AdminController.java) : " + classDto.toString());
+		}
+		
+		
+		return classDto;
 	}
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,14 +2,26 @@ package com.callin.domain;
 
 public class ClassProgressDto {
 
+	private String courseName;
+	private String teacherName;
 	private String classStartDate;
 	private String classEndDate;
+	private String classProgressDay;
 	private String classStartTime;
 	private String classEndTime;
-	private String classProgressDay;
-	private String courseName;
-	private String teacherId;
 	
+	public String getCourseName() {
+		return courseName;
+	}
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+	public String getTeacherName() {
+		return teacherName;
+	}
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
 	public String getClassStartDate() {
 		return classStartDate;
 	}
@@ -21,6 +33,12 @@ public class ClassProgressDto {
 	}
 	public void setClassEndDate(String classEndDate) {
 		this.classEndDate = classEndDate;
+	}
+	public String getClassProgressDay() {
+		return classProgressDay;
+	}
+	public void setClassProgressDay(String classProgressDay) {
+		this.classProgressDay = classProgressDay;
 	}
 	public String getClassStartTime() {
 		return classStartTime;
@@ -34,33 +52,14 @@ public class ClassProgressDto {
 	public void setClassEndTime(String classEndTime) {
 		this.classEndTime = classEndTime;
 	}
-	public String getClassProgressDay() {
-		return classProgressDay;
-	}
-	public void setClassProgressDay(String classProgressDay) {
-		this.classProgressDay = classProgressDay;
-	}
-	
-	public String getCourseName() {
-		return courseName;
-	}
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
-	}
-	public String getTeacherId() {
-		return teacherId;
-	}
-	public void setTeacherId(String teacherId) {
-		this.teacherId = teacherId;
-	}
 	
 	@Override
 	public String toString() {
-		return "ClassProgressDto [classStartDate=" + classStartDate + ", classEndDate=" + classEndDate
-				+ ", classStartTime=" + classStartTime + ", classEndTime=" + classEndTime + ", classProgressDay="
-				+ classProgressDay + ", courseName=" + courseName + ", teacherId=" + teacherId + "]";
+		return "ClassProgressDto [courseName=" + courseName + ", teacherName=" + teacherName + ", classStartDate="
+				+ classStartDate + ", classEndDate=" + classEndDate + ", classProgressDay=" + classProgressDay
+				+ ", classStartTime=" + classStartTime + ", classEndTime=" + classEndTime + "]";
 	}
-	
+
 	
 	
 }

@@ -33,9 +33,10 @@
 							</button>
 						</div>
 	                </div>
-          				
 				</div>
 				<!-- /card-header 영역 끝 -->
+				<!-- 보이지 않는 정보 -->
+				
 				<!-- /card-body 영역 시작 -->
 				<div class="card-body table-responsive p-0">
 				  	<table class="table table-hover text-nowrap">
@@ -55,6 +56,7 @@
 						        <td th:text="${ul.userPw}"></td>
 						        <td th:text="${ul.userName}"></td>
 						        <td th:text="${ul.userEmail}"></td>
+						        <td th:text="${ul.userLevel}" hidden="hidden" id="userLevel"></td>
 				      		</tr>
 				    	</tbody>
 					</table>
@@ -69,35 +71,60 @@
 	
 	$(function(){
 	   
-	  $('.userClassInfo').click(function(){
+		$('.userClassInfo').click(function(){
 	     
-	     var userId = $(this).text();      
-	     
-	     var request =  $.ajax({
-	          url: "/userIdClick", //요청 주소
-	          method: "GET", //요청 방식
-	          data: { userId : userId }, // input name->cateCode,  value->stName
-	          dataType: "json" //받아올 포맷방식
-	     });   
-	     request.done(function(data){
+		var userId = $(this).text();  
+		
+		var userLev = $(this).parent().parent().find('#userLevel').text();
+		console.log("화면에서 입력한 아이디의 권한 : ", userLev);
+
+		// Ajax로 서버에 선택한 아이디값을 담아 요청
+		var request =  $.ajax({
+			url: "/userIdClick", //요청 주소
+			method: "GET", //요청 방식
+			data: { userId : userId }, // input name->cateCode,  value->stName
+			dataType: "json" //받아올 포맷방식
+		});   
+		
+		// ajax로 서버요청하여 data 값을 정상적으로 응답 받아오는경우
+		request.done(function(data){
 	        
 	        console.log(data);
 	        //console.log(data.memberId, data.memberName, data.memberGender, data.memberBirth);
-	         
-	        var htmml= '';
-	        
-	        htmml += '<h3> <text class="text" style="color : #A9A9F5; font-weight: bold;"> 수업명 : </text>' + data.courseName;
-	        htmml += '<br> <text class="text" style="color : #A9A9F5; font-weight: bold;"> 담당강사 : </text>' + data.teacherId;
-            htmml += '<br> <text class="text" style="color : #A9A9F5; font-weight: bold;" > 수업시작일 : </text>' + data.classStartDate;
-            htmml += '<br> <text class="text" style="color : #A9A9F5; font-weight: bold;"> 수업종료일 : </text>' + data.classEndDate;
-            htmml += '<br> <text class="text" style="color : #A9A9F5; font-weight: bold;"> 수업요일 : </text>' + data.classProgressDay; + '</h3>'
+	       
+			if(userLev == '학생' && data.courseName != null && data.courseName != ''){
+				 var html= '';
+		        
+				html += '<h3> <text class="text" style="color : #646464	; font-weight: bold;"> 수업명 : </text>' + data.courseName;
+				html += '<br> <text class="text" style="color : #646464	; font-weight: bold;"> 담당강사 : </text>' + data.teacherName;
+				html += '<br> <text class="text" style="color : #646464	; font-weight: bold;" > 수업시작일 : </text>' + data.classStartDate;
+				html += '<br> <text class="text" style="color : #646464	; font-weight: bold;"> 수업종료일 : </text>' + data.classEndDate;
+				html += '<br> <text class="text" style="color : #646464	; font-weight: bold;"> 수업요일 : </text>' + data.classProgressDay;
+				html += '<br> <text class="text" style="color : #646464	; font-weight: bold;"> 수업시작시간 : </text>' + data.classStartTime;
+				html += '<br> <text class="text" style="color : #646464	; font-weight: bold;"> 수업종료시간 : </text>' + data.classEndTime; + '</h3>'
+		     
+				Swal.fire(html); 
+			}
 	     
-	        Swal.fire(htmml); 
-	     
-	     });
-	     request.fail(function( jqXHR, textStatus){
-	         alert( "Request failed: " + textStatus );
-	     }); 
+		});
+		
+		// ajax로 서버요청했는데 에러나, data에 값이 없는 경우
+		request.fail(function( jqXHR, textStatus){
+			if(userLev == '강사'){
+				var html= '';
+				html += '<h3> <text class="text" style="color : #646464; font-weight: bold;">강사입니다.</text></h3>'
+				Swal.fire(html); 
+			} else if(userLev == '관리자'){
+				var html= '';
+				html += '<h3> <text class="text" style="color : #646464; font-weight: bold;">관리자입니다.</text></h3>'
+				Swal.fire(html); 
+			} else if(userLev == '학생'){
+				var html= '';
+				html += '<h3> <text class="text" style="color : #646464; font-weight: bold;">등록된 수업이 없습니다.</text></h3>'
+				Swal.fire(html);
+			}
+				
+		}); 
 	});
 	});
 	

@@ -1,5 +1,10 @@
 package com.callin.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.callin.domain.UserDto;
 import com.callin.service.AdminService;
@@ -29,19 +35,46 @@ public class UserController {
 	
 	//로그인
 	@GetMapping("/login")
-	public String login(Model model) {
+	public String login(Model model
+						,@RequestParam(name="result", required = false)String result) {
 		model.addAttribute("title","로그인화면");
+		if(result != null) model.addAttribute("result", result);
 		return "userPage/login";
 	}
+	
 	@PostMapping("/login")
-	public String login(@RequestParam(name="id", required = false)String id,
-						@RequestParam(name="password", required = false)String password) {
-		System.out.println(id + "<<<<<<<<id");					
-		System.out.println(password + "<<<<<<<<<<<<password");					
+	public String login(@RequestParam(name="loginId", required = false)String loginId
+						,@RequestParam(name="loginPw", required = false)String loginPw
+						,HttpSession session
+						,RedirectAttributes redirectAttr) {
+		System.out.println(loginId + "<<<<<<<<id");					
+		System.out.println(loginPw + "<<<<<<<<<<<<password");					
 		
-		return "main";
+		//1.회원이 있는 경우
+		if(loginId != null && !"".equals(loginId) &&
+		   loginPw != null && !"".equals(loginPw)) {
+		   UserDto userDto = userService.getUserRead(loginId);
+		   if(userDto != null) {
+			   if(loginPw.equals(userDto.getUserPw())) {
+				   session.setAttribute("SID", loginId);
+				   session.setAttribute("SLEVEL", userDto.getUserName());
+				   session.setAttribute("SNAME", userDto.getUserLevel());
+				   return "redirect:/";
+			   }
+		   }
+		}
+		//2. 회원이 없다면 redirect:/login result => 등록된 정보가 없습니다.
+		redirectAttr.addAttribute("result", "등록된 정보가 없습니다.");
+		return "redirect:/login";
 	}
 	
+	//로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:login";
+		
+	}
 	//회원가입
 	@GetMapping("/join")
 	public String join(Model model) {
@@ -49,7 +82,7 @@ public class UserController {
 		return "userPage/join";
 	}
 	@PostMapping("/join")
-	public String join(@RequestParam(name="inpugName", required = false)String name,
+	public String join(@RequestParam(name="inputName", required = false)String name,
 						@RequestParam(name="inputId", required = false)String id,
 						@RequestParam(name="inputPw", required = false)String pw,
 						@RequestParam(name="inputEmail", required = false)String email,

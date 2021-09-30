@@ -22,7 +22,7 @@
 		    		<div class="card-body">
 							<form th:action="@{/login}" method="post">
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" placeholder="ID" name="id">
+									<input type="text" value="id001" class="form-control" placeholder="ID" id="loginId" name="loginId">
 									<div class="input-group-append">
 										<div class="input-group-text">
 											<span class="fas fa-envelope"></span>
@@ -31,7 +31,7 @@
 			       				</div>
 			       				
 								<div class="input-group mb-3">
-									<input type="password" class="form-control" placeholder="Password" name="password">
+									<input type="password" value="pw001" class="form-control" placeholder="Password" id="loginPw" name="loginPw">
 									<div class="input-group-append">
 										<div class="input-group-text">
 							      			<span class="fas fa-lock"></span>
@@ -71,6 +71,39 @@
 				</div>
 		  <!-- /.card -->
 			</div>
+			<script type="text/javascript">
+			$(function() {
+			          $('#submitBtn').mouseenter(function() {
+			              $(this).css('cursor','pointer') ;
+			          }).mouseout(function() {
+			              $(this).css('cursor','normal') ;
+			          }).click(function() {
+			              submitCheck() ;
+			          }) ;
+			      }) ;
+			      
+			      function submitCheck() {
+			          var userId  = $('#loginId' ).val() ;
+			          var userPwd = $('#loginPw').val() ;
+			          $.ajax({
+			              type : "POST",
+			              url: '/loginIdCheck',
+			              data: {loginId : loginId, loginPw : loginPw},
+			              success: function(data) {
+			                  if(data == "false")
+			                      alert('잘못된 아이디이거나, 비밀번호가 틀렸습니다.') ;
+			                  else
+			                      location.href="${contextPath}" ; // home.do로 돌아가시면 됩니다.
+			              }
+			          }) ;
+			      }
+			      
+			      $('.loginInput').keydown(function(key) {
+			          if(key.keyCode == 13) {
+			              $('#submitBtn').click() ;
+			          }
+			      }) ;			
+			</script>
 		</section>
 	</th:block>
 </html>
