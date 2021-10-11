@@ -1,109 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="@{layout/default}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{layout/defaultLogin}">
 
-	<th:block layout:fragment="customTitle">
-		 <div class="col-sm-6">
-			<h1 class="m-0">로그인</h1>
-	     </div>
-	</th:block>
-	
-	<!-- contents layout:fragment 정의 -->
-	<th:block layout:fragment="customContents">
-		<section class="contents" th:align="center">
-			<div class="login-box">
-		  <!-- /.login-logo -->
-				<div class="card card-outline card-primary">
-					<div class="card-header text-center">
-						<a class="h1"><b></b>LOGIN</a>
-		    		</div>
-		    		
-		    		<div class="card-body">
-							<form th:action="@{/login}" method="post">
-								<div class="input-group mb-3">
-									<input type="text" value="id001" class="form-control" placeholder="ID" id="loginId" name="loginId">
-									<div class="input-group-append">
-										<div class="input-group-text">
-											<span class="fas fa-envelope"></span>
-										</div>
-									</div>
-			       				</div>
-			       				
-								<div class="input-group mb-3">
-									<input type="password" value="pw001" class="form-control" placeholder="Password" id="loginPw" name="loginPw">
-									<div class="input-group-append">
-										<div class="input-group-text">
-							      			<span class="fas fa-lock"></span>
-							    		</div>
-							  		</div>
-								</div>
-								
-								<div class="row">
-									<div class="col-8">
-								    	<div class="icheck-primary">
-								      		<input type="checkbox" id="remember">
-								      			<label for="remember">로그인 상태 유지</label>     			
-								    	</div>
-								    </div>
-									<div class="col-4">
-										<button type="submit" class="btn btn-primary btn-block">로그인</button>
-									</div>
-								</div>
-								
-		      				</form>
-		
-							<div class="social-auth-links text-center mt-2 mb-3">
-								<a href="#" class="btn btn-block btn-primary">
-							   		<i class="fab fa-facebook mr-2"></i> Facebook
-							  	</a>
-							</div>
-		      <!-- /.social-auth-links -->
-		
-							<p class="mb-1">
-								<a th:href="@{/idFind}">아이디/비밀번호 찾기</a>
-							</p>
-							<p class="mb-0">
-								<a th:href="@{/join}" class="text-center">회원가입</a>
-							</p>
-					</div>
-		    <!-- /.card-body -->
-				</div>
-		  <!-- /.card -->
+<!-- contents layout:fragment 정의 -->
+<th:block layout:fragment="customContents">
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+			<!-- Tabs Titles -->
+			<h2 class="active"> Sign In </h2>
+			<h2 class="inactive underlineHover">Sign Up </h2>
+
+			<!-- Icon -->
+			<div class="fadeIn first">
+				<img th:src="@{/AdminLTE/dist/img/callinLogo.png}" id="icon" alt="User Icon" />
 			</div>
-			<script type="text/javascript">
-			$(function() {
-			          $('#submitBtn').mouseenter(function() {
-			              $(this).css('cursor','pointer') ;
-			          }).mouseout(function() {
-			              $(this).css('cursor','normal') ;
-			          }).click(function() {
-			              submitCheck() ;
-			          }) ;
-			      }) ;
-			      
-			      function submitCheck() {
-			          var userId  = $('#loginId' ).val() ;
-			          var userPwd = $('#loginPw').val() ;
-			          $.ajax({
-			              type : "POST",
-			              url: '/loginIdCheck',
-			              data: {loginId : loginId, loginPw : loginPw},
-			              success: function(data) {
-			                  if(data == "false")
-			                      alert('잘못된 아이디이거나, 비밀번호가 틀렸습니다.') ;
-			                  else
-			                      location.href="${contextPath}" ; // home.do로 돌아가시면 됩니다.
-			              }
-			          }) ;
-			      }
-			      
-			      $('.loginInput').keydown(function(key) {
-			          if(key.keyCode == 13) {
-			              $('#submitBtn').click() ;
-			          }
-			      }) ;			
-			</script>
-		</section>
-	</th:block>
+
+			<!-- Login Form -->
+			<form th:action="@{/login}" method="post">
+				<!-- 로그인 정보 default -->
+				<input type="text" 		id="login" 	  class="fadeIn second loginInput" name="loginId" th:if="${#strings.isEmpty(resultPw)}" 		value="adid001">
+				<input type="password" 	id="password" class="fadeIn third  loginInput" name="loginPw" th:if="${#strings.isEmpty(resultPw)}" 		value="adpw001">
+				
+				<!-- 로그인 실패시 입력정보 유지 -->
+				<input type="text" 		id="login" 	  class="fadeIn second loginInput" name="loginId" th:if="${not #strings.isEmpty(resultPw)}" 	th:value="${resultId}">
+				<input type="password" 	id="password" class="fadeIn third  loginInput" name="loginPw" th:if="${not #strings.isEmpty(resultPw)}" 	th:value="${resultPw}">
+				
+				<!-- 로그인 버튼 -->
+				<input type="submit" 	id="submitBtn" class="fadeIn fourth" value="Log In" >
+			</form>
+			<div id="formSecond">
+				<a id="socialLogin" class="fadeIn fourth" href="#">Or Sign Up Using</a>
+			</div>
+			<div class="fadeIn fourth">
+				<img style="width: 204px; height: 50px;" th:src="@{/AdminLTE/dist/img/cacaoLogo.png}" id="icon" alt="User Icon" />
+			</div>
+			
+			<!-- Remind Passowrd -->
+			<div id="formFooter">
+				<a class="underlineHover" href="#">Forgot Password?</a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function () {
+			$('#submitBtn').mouseenter(function () {
+				$(this).css('cursor', 'pointer');
+			}).mouseout(function () {
+				$(this).css('cursor', 'normal');
+			})
+		});
+
+		// 엔터 쳤을 때 로그인 버튼 누르게 하는거
+		$('.loginInput').keydown(function (key) {
+			if (key.keyCode == 13) {
+				$('#submitBtn').click();
+			}
+		});			
+	</script>
+</th:block>
+
 </html>

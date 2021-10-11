@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="@{layout/default}">
+
+<th:block layout:fragment="customTitle">
+	<div class="col-sm-12" style="text-align: center;">
+		<h1 class="m-0">로그인</h1>
+	</div>
+</th:block>
+
+<!-- contents layout:fragment 정의 -->
+<th:block layout:fragment="customContents">
+	<section class="hold-transition login-page">
+		<div class="login-box" th:align="center">
+			<!-- /.login-logo -->
+			<div class="card card-outline card-primary">
+				<div class="card-header text-center">
+					<a class="h1"><b></b>LOGIN</a>
+				</div>
+
+				<div class="card-body">
+					<form th:action="@{/login}" method="post">
+						<div class="input-group mb-3">
+							<input type="text" value="id001" class="form-control" placeholder="ID" id="loginId"
+								name="loginId">
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-envelope"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="input-group mb-3">
+							<input type="password" value="pw001" class="form-control" placeholder="Password"
+								id="loginPw" name="loginPw">
+							<div class="input-group-append">
+								<div class="input-group-text">
+									<span class="fas fa-lock"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="social-auth-links text-center mt-2 mb-3">
+							<button type="submit" class="btn btn-primary btn-block">로그인</button>
+						</div>
+					</form>
+
+					<div class="social-auth-links text-center mt-2 mb-3">
+						<a href="#" class="btn btn-block btn-primary">
+							<i class="fab fa-facebook mr-2"></i> Facebook
+						</a>
+					</div>
+					<!-- /.social-auth-links -->
+
+					<p class="mb-1">
+						<a th:href="@{/idFind}">아이디/비밀번호 찾기</a>
+					</p>
+					<p class="mb-0">
+						<a th:href="@{/join}" class="text-center">회원가입</a>
+					</p><br>
+					<p th:if="${result eq 'false'}" style="color: red;">아이디/패스워드가 일치하지 않습니다.</p>
+				</div>
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+		</div>
+		<script type="text/javascript">
+			$(function () {
+				$('#submitBtn').mouseenter(function () {
+					$(this).css('cursor', 'pointer');
+				}).mouseout(function () {
+					$(this).css('cursor', 'normal');
+				})
+			});
+
+			// 엔터 쳤을 때 로그인 버튼 누르게 하는거
+			$('.loginInput').keydown(function (key) {
+				if (key.keyCode == 13) {
+					$('#submitBtn').click();
+				}
+			});			
+		</script>
+	</section>
+</th:block>
+
+</html>
