@@ -7,22 +7,26 @@
 	<div class="wrapper fadeInDown">
 		<div id="formContent">
 			<!-- Tabs Titles -->
-			<h2 class="active"> Sign In </h2>
-			<h2 class="inactive underlineHover">Sign Up </h2>
-
+			<a th:href="@{/login}">
+				<h2 class="active"> Sign In </h2>
+			</a>
+			<a th:href="@{/join}">
+				<h2 class="inactive underlineHover">Sign Up </h2>
+			</a>
+			
 			<!-- Icon -->
-			<div class="fadeIn first">
+			<div class="fadeIn first img">
 				<img th:src="@{/AdminLTE/dist/img/callinLogo.png}" id="icon" alt="User Icon" />
 			</div>
 
 			<!-- Login Form -->
 			<form th:action="@{/login}" method="post">
 				<!-- 로그인 정보 default -->
-				<input type="text" 		id="login" 	  class="fadeIn second loginInput" name="loginId" th:if="${#strings.isEmpty(resultPw)}" 		value="adid001">
+				<input type="text" 		id="login" 	  class="fadeIn second loginInput" name="loginId" th:if="${#strings.isEmpty(resultId)}" 		value="adid001">
 				<input type="password" 	id="password" class="fadeIn third  loginInput" name="loginPw" th:if="${#strings.isEmpty(resultPw)}" 		value="adpw001">
 				
 				<!-- 로그인 실패시 입력정보 유지 -->
-				<input type="text" 		id="login" 	  class="fadeIn second loginInput" name="loginId" th:if="${not #strings.isEmpty(resultPw)}" 	th:value="${resultId}">
+				<input type="text" 		id="login" 	  class="fadeIn second loginInput" name="loginId" th:if="${not #strings.isEmpty(resultId)}" 	th:value="${resultId}">
 				<input type="password" 	id="password" class="fadeIn third  loginInput" name="loginPw" th:if="${not #strings.isEmpty(resultPw)}" 	th:value="${resultPw}">
 				
 				<!-- 로그인 버튼 -->

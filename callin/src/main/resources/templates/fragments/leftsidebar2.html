@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<aside th:fragment="leftsidebarFragment" class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #2598c9; width: 246px;">
+<aside th:fragment="leftsidebarFragment" class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #2598c9;">
 
-	<a th:href="@{/}" class="brand-link" style="border-bottom: 1px solid #FFDDDD; padding: 0px 0px;">
-		<img th:src="@{/AdminLTE/dist/img/callinLogo1.png}" alt="AdminLTE Logo">
+	<a th:href="@{/}" class="brand-link" style="border-bottom: 1px solid #FFDDDD;">
+		<img th:src="@{/AdminLTE/dist/img/callinLogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+			style="opacity: .8">
+		<span class="brand-text font-weight-light" style="border: 100; font-weight: bolder;">CALLIN</span>
 	</a>
 
 	<div class="sidebar">

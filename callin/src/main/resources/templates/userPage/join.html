@@ -1,114 +1,407 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="@{layout/default}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{layout/defaultJoin}">
 
-	<th:block layout:fragment="customTitle">
-		<div class="col-sm-6">
-			<h1 class="m-0">회원가입</h1>
-		</div>
-		<!-- /.col -->
-	
-	</th:block>
-	
-	<!-- contents layout:fragment 정의 -->
-	<th:block layout:fragment="customContents">
-		<div class="card card-primary" style="width: 800px;">
-			<div class="card-header">
-				<h3 class="card-title"></h3>
-			</div>
+<!-- contents layout:fragment 정의 -->
+<th:block layout:fragment="customContents">
+	<div class="wrapper fadeInDown">
+		<div id="formContent">
+		
+			<!-- Tabs Titles -->
+			<a th:href="@{/login}">
+				<h2 class="inactive underlineHover"> Sign In </h2>
+			</a>
+			<a th:href="@{/join}">
+				<h2 class="active">Sign Up </h2>
+			</a>
 			
-			<form th:action="@{/join}" class="form-horizontal" method="post">
-				<div class="card-body">
-					<div class="form-group">
-					  	<label for="inputName">이름</label>
-					  	<input type="text" class="form-control" id="inputName" name="inputName" placeholder="Name">
-					</div>
-					<div class="form-group">
-						<div style="display: inline-block; width: 650px;">
-						  	<label for="userIdCheck">아이디</label>
-						  	<input type="text" class="form-control" id="userIdCheck" name="userIdCheck" placeholder="ID">
-					  	</div>
-					  	<button class="btn btn-outline-primary" type="button" id="userIdCheckBtn" style="width: 105px;">중복체크</button>
-					  	<div class="check_font" id="id_check">
-					  	</div>
-					</div>									
-					<div class="form-group">
-					  	<label for="inputPw">비밀번호</label>
-					  	<input type="password" class="form-control" id="inputPw" name="inputPw" placeholder="Password">
-					</div>
-					<div class="form-group">
-					  	<label for="inputEmail">이메일</label>
-					  	<input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Enter email">
-					</div>
-					<div class="form-group">
-						<label for="inputPhoneNum">휴대폰번호</label>
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-phone"></i></span>
-							</div>
-							<input type="text" class="form-control" id="inputPhoneNum" name="inputPhoneNum" data-inputmask="&quot;mask&quot;: &quot;999 9999-9999&quot;" data-mask="" inputmode="text" >
-						</div>
-					</div>					
-					<div class="form-group">
-					  	<label for="inputNick">영어닉네님</label>
-					  	<input type="text" class="form-control" id="inputNick" name="inputNick" placeholder="NickName">
-					</div>
-					<div class="form-group">
-						<label for="inputBirthday">생년월일</label>
-						<input type="text" class="form-control" id="inputBirthday" name="inputBirthday" placeholder="birth date">	
-					</div>										
+			<!-- Icon -->
+			<div class="fadeIn first">
+				<img th:src="@{/AdminLTE/dist/img/callinLogo2.png}" id="icon" alt="User Icon" />
+			</div>
+
+			<!-- Login Form -->
+			<form id="joinForm" th:action="@{/join}" method="post">
+				<!-- 회원가입 입력정보 default -->
+				<label for="userId">
+					<p class="fadeIn third loginInput userId">아이디</p>
+					<input type="button" id="idCheckBtn" 	class="fadeIn third idCheckBtn" 		value="중복체크">
+				</label>
+				<input type="text" 		id="userId" 	  	class="fadeIn third loginInput" 		name="userId" 		placeholder="영 소문자, 숫자 4~20자리"/>
+				<p class="fadeIn third loginInput" id="idCheckResult"></p>
+				
+				
+				<label for="userPw"><p class="fadeIn third loginInput">패스워드</p></label>
+				<input type="password" 	id="userPw" 		class="fadeIn third loginInput idCheck" name="userPw" 		placeholder="6자 ~ 18자 사이 숫자, 영문" 	readonly/>
+				
+				<label for="userPwCheck"><p class="fadeIn third loginInput">패스워드 확인</p></label>
+				<input type="password" 	id="userPwCheck" 	class="fadeIn third loginInput idCheck" name="userPwCheck" 	placeholder="패스워드를 한번 더 입력해주세요." 	readonly/>
+				
+				<label for="userName"><p class="fadeIn third loginInput">이름</p></label>
+				<input type="text"		id="userName"		class="fadeIn third loginInput idCheck" name="userName" 	placeholder="이름을 입력해주세요." 			readonly/>
+				
+				<label for="userNickName"><p class="fadeIn third loginInput">닉네임</p></label>
+				<input type="text"		id="userNickName"	class="fadeIn third loginInput idCheck" name="userNickName" placeholder="닉네임을 입력해주세요." 	style="margin-bottom: 20px;" readonly/><br>
+				
+			
+				<div class="fadeIn third loginInput idCheck" style="color: #7c7c7c; text-align: left; padding-left: 38px;" readonly>
+					성별 &emsp; : &emsp;
+					<label for="userGenderMan"> 
+						<input type="radio" id="userGenderMan" name="userGender" value="남" checked="checked">남자
+					</label> 
+						&emsp;&emsp;
+					<label for="userGenderGirl"> 
+						<input type="radio" id="userGenderGirl" name="userGender" value="여">여자
+					</label>
 				</div>
-				<div class="card-footer">
-				  <button type="submit" class="btn btn-primary">가입완료</button>
+														
+				<label for="userEmail"><p class="fadeIn third loginInput">이메일</p></label>
+				<input type="text"		id="userEmail"		class="fadeIn third loginInput idCheck" name="userEmail" 	placeholder="ex) exam@exam.com" 	readonly/>
+				
+				<label for="userPhone"><p class="fadeIn third loginInput">휴대폰번호</p></label>
+				<input type="text"		id="userPhone"		class="fadeIn third loginInput idCheck" name="userPhone" 	placeholder="휴대폰번호를 입력해주세요." 	maxlength="13" readonly/>
+				
+				<label for="userBirth">	<p class="fadeIn third loginInput">생일</p></label>
+				<input type="date"		id="userBirth"		class="fadeIn third loginInput idCheck" name="userBirth"  	readonly/>
+				
+				<!-- 우편번호 찾기 영역 시작 -->
+				<label for="userAddr"><p class="fadeIn third loginInput">주소</p></label>
+				<input type="text" 	 id="userPostCode" 	 name="userPostCode"   class="fadeIn third loginInput idCheck" placeholder="우편번호" 	readonly>
+				<input type="button" id="emailSearch" 	 name="emailSearch"	   class="fadeIn third loginInput idCheck" value="우편번호 찾기"	onclick="execDaumPostcode()" 	readonly><br>
+				<input type="text" 	 id="userAddr" 		 name="userAddr"	   class="fadeIn third loginInput idCheck" placeholder="주소" 	style="margin-top: 10px;" 		readonly><br>
+				<input type="text" 	 id="userAddrDetail" name="userAddrDetail" class="fadeIn third loginInput idCheck" placeholder="상세주소" 	style="margin-top: 10px;" 		readonly>
+				<input type="text" 	 id="userAddrExtra"  name="userAddrExtra"  class="fadeIn third loginInput idCheck" placeholder="참고항목" 	style="margin-top: 10px;" 		readonly>
+				
+				<!-- 
+					우편번호 API 를 통해 띄운 레이어임.
+					iOS에서는 position:fixed 버그가 있음
+					적용하는 사이트에 맞게 position:absolute 등을 이용하여 
+					\top,left값 조정 필요 
+				-->
+				<div id="layer" style="display:none; position:fixed; overflow:hidden; z-index:1;-webkit-overflow-scrolling:touch;">
+					<img 	src="//t1.daumcdn.net/postcode/resource/images/close.png" 
+							id="btnCloseLayer" 
+							style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" 
+							onclick="closeDaumPostcode()" 
+							alt="닫기 버튼">
 				</div>
+				<!-- 우편번호 찾기 영역 종료 -->
+				
+				
+				
+				
+				<!-- 회원가입 실패시 입력정보 유지 -->
+				<input type="text" 		id="login" 	  class="fadeIn second loginInput" name="loginId" th:if="${not #strings.isEmpty(resultId)}" th:value="${resultId}">
+				<input type="password" 	id="password" class="fadeIn third  loginInput" name="loginPw" th:if="${not #strings.isEmpty(resultPw)}" th:value="${resultPw}">
+				
+				<!-- 회원가입 버튼 -->
+				<input type="button" 	id="submitBtn" class="fadeIn fourth" value="Sign Up" style="margin-top: 20px; margin-bottom: 20px;">
 			</form>
 		</div>
-	</section>
-	
+	</div>
 	<script type="text/javascript">
-		// 아이디 유효성 검사(false = 중복 / true != 중복)
-		$("#userIdCheckBtn").click(function() {
-			
-			// 화면에서 입력한 아이디
-			var userIdCheck = $('#userIdCheck').val();
-			
-			console.log("화면에서 입력한 아이디 (join.html) : ",userIdCheck);
-			
-			//Ajax로 서버에 요청하는 부분
-			var request = $.ajax({
-				url :  '/joinIdCheck',
-				method : 'POST',
-				data : {userIdCheck : userIdCheck},
-				dataType : "json"
+		$(document).ready(function() {
+			$('#submitBtn').mouseenter(function () {
+				$(this).css('cursor', 'pointer');
+			}).mouseout(function () {
+				$(this).css('cursor', 'normal');
+			})
+
+			// 엔터 쳤을 때 로그인 버튼 누르게 하는거
+			$('.loginInput').keydown(function (key) {
+				if (key.keyCode == 13) {
+					$('#submitBtn').click();
+				}
 			});
 			
-			// Ajax 를 통해 서버에서 응답받은 데이터
-			request.done(function( data ){
-				console.log("false = 중복o / true = 중복x : " + data);							
+			// 아이디 중복체크 Ajax
+			$('#idCheckBtn').click(function(){
+				// 화면에서 입력한 아이디
+				var userIdCheck = $('#userId').val();
 				
-				if (data == false) {
-					// false : 아이디가 중복되는 문구
-					$("#id_check").text("✔사용중인 아이디입니다 :p");
-					$("#id_check").css("color", "red");
-				} else if(data == true) {
-					// 아이디 정규식
-					if(!/^[a-z0-9]{4,20}$/.test($('#userIdCheck').val())){
-						$("#id_check").text("✔아이디는 영 소문자, 숫자 4~20자리로 입력해주세요.");
-						$("#id_check").css("color", "red");
-					} else {
-						$("#id_check").text("⭕사용 가능한 아이디 입니다. :p");
-						$("#id_check").css("color", "blue");
-					}
-				} 
-			})
-			
-			//Ajax 실패시 에러문구
-			request.fail(function(jqXHR, textStatus){
-				alert("Request failed : " + textStatus);
-			})
+				console.log("화면에서 입력한 아이디 (join.html) : ",userIdCheck);
+				
+				//Ajax로 서버에 요청하는 부분
+				var request = $.ajax({
+					url :  '/joinIdCheck',
+					method : 'POST',
+					data : {userIdCheck : userIdCheck},
+					dataType : "json"
+				});
+				
+				// Ajax 를 통해 서버에서 응답받은 데이터
+				request.done(function( data ){
+					console.log("false = 중복o / true = 중복x : " + data);							
+					
+					if (data == false) {
+						// false : 아이디가 중복되는 문구
+						$("#idCheckResult").text("✔사용중인 아이디입니다 :p");
+						$("#idCheckResult").css("color", "red");
+						$('.idCheck').attr('readonly',true);
+					} else if(data == true) {
+						// 아이디 정규식
+						if(!/^[a-z0-9]{4,20}$/.test($('#userId').val())){
+							$("#idCheckResult").text("✔아이디는 영 소문자, 숫자 4~20자리로 입력해주세요.");
+							$("#idCheckResult").css("color", "red");
+							$('.idCheck').attr('readonly',true);
+						} else {
+							$("#idCheckResult").text("⭕사용 가능한 아이디 입니다. :p");
+							$("#idCheckResult").css("color", "blue");
+							$('.idCheck').attr('readonly',false);
+						};
+					};
+				});
+				
+				//Ajax 실패시 에러문구
+				request.fail(function(jqXHR, textStatus){
+					alert("Request failed : " + textStatus);
+				});
+			});   // 아이디 중복체크 AJAX 스크립트 종료
 		});
 		
-	</script>	
-	</th:block>
+		// 아이디 중복체크 전 다른 input 클릭시 이벤트
+		$(document).on('click', '.idCheck' ,function(){
+			if($('.idCheck').attr('readonly') == 'readonly'){
+				alert("아이디 중복체크를 먼저 해주세요.");
+				this.blur();
+				$('#userId').focus();
+			}
+		})
+		
+		// 전화번호 자동 하이폰 스크립트 시작
+		var autoHypenPhone = function(str) {
+			str = str.replace(/[^0-9]/g, '');
+			var tmp = '';
+			if (str.length < 4) {
+				return str;
+			} else if (str.length < 7) {
+				tmp += str.substr(0, 3);
+				tmp += '-';
+				tmp += str.substr(3);
+				return tmp;
+			} else if (str.length < 11) {
+				tmp += str.substr(0, 3);
+				tmp += '-';
+				tmp += str.substr(3, 3);
+				tmp += '-';
+				tmp += str.substr(6);
+				return tmp;
+			} else {
+				tmp += str.substr(0, 3);
+				tmp += '-';
+				tmp += str.substr(3, 4);
+				tmp += '-';
+				tmp += str.substr(7);
+				return tmp;
+			}
+			return str;
+		};	
+		var userPhone = document.getElementById('userPhone');
+	
+		userPhone.onkeyup = function() {
+			console.log(this.value);
+			this.value = autoHypenPhone(this.value);
+		};  // 전화번호 자동 하이폰 스크립트 종료
+		
+		// 회원가입 유효성 검사 시작
+		$('#submitBtn').click(function(){
+			var regexPw = /^[a-z0-9_-]{6,18}$/ // 숫자, 영문만 입력 가능 6자에서 18자 사이!!
+			var regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			var submitFlag = true;
+			var joinForm  = $('#joinForm');
+			var inputObj = joinForm.find('input');
+			
+			$.each(inputObj, function(e){
+				var inputId = $(this).attr('id');
+				var inputValue = $(this).val();
+				var inputLabel = function(){
+					for (var i = 0; i < $('label').length; i++) { 
+					    var labelFor = $('label').eq(i).attr('for'); 
+					    if(labelFor == inputId){
+							var labelText = $('label').eq(i).text();
+							return labelText;
+						}else{
+							console.log('inputLabel 자바스크립트 함수 확인');	
+						};
+					};
+				};
+				
+				if(inputId == 'userId'){
+					if(inputValue == ''){
+						alert(inputLabel() + '을 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}
+				}else if(inputId == 'userPw'){
+					if(inputValue == ''){
+						alert(inputLabel() + '를 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}else if(!regexPw.test(inputValue)){
+						alert('숫자, 영문만 입력 가능 6자에서 18자 사이!!  '+ inputLabel() +' 형식에 맞게 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}
+				}else if(inputId == 'userPwCheck'){
+					if ($('#userPw').val() != $('#userPwCheck').val()) {
+						alert(inputLabel() + '과 패스워드가 일치하지 않습니다.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}
+				}else if(inputId == 'userName'){
+					if(inputValue == ''){
+						alert(inputLabel() + '을 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}
+				}else if(inputId == 'userNickName'){
+					if(inputValue == ''){
+						alert(inputLabel() + '을 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}
+				}else if(inputId == 'userEmail'){
+					if(inputValue == ''){
+						alert(inputLabel() + '을 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}else if(!regexEmail.test(inputValue)){
+						alert(inputLabel() + '을 형식에 맞게 다시 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}
+				}else if(inputId == 'userPhone'){
+					if(inputValue == ''){
+						alert(inputLabel() + '를 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}
+				}else if(inputId == 'userBirth'){
+					if(inputValue == ''){
+						alert(inputLabel() + '을 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}
+				}else if(inputId == 'userAddr'){
+					if(inputValue == ''){
+						alert(inputLabel() + '를 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}
+				}else if(inputId == 'userAddrDetail'){
+					if(inputValue == ''){
+						alert(inputLabel() + '를 입력해주세요.');
+						$(this).focus();
+						submitFlag = false;
+						return submitFlag;
+					}
+				}
+			});
+			
+			if(submitFlag) joinForm.submit();
+		});
+	</script>
+	
+	<!-- ========================= 우편번호 찾기 API ========================= --> 
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+    // 우편번호 찾기 화면을 넣을 element
+    var element_layer = document.getElementById('layer');
+
+    function closeDaumPostcode() {
+        // iframe을 넣은 element를 안보이게 한다.
+        element_layer.style.display = 'none';
+    }
+
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("userAddrExtra").value = extraAddr;
+                
+                } else {
+                    document.getElementById("userAddrExtra").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('userPostCode').value = data.zonecode;
+                document.getElementById("userAddr").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("userAddrDetail").focus();
+
+                // iframe을 넣은 element를 안보이게 한다.
+                // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+                element_layer.style.display = 'none';
+            },
+            width : '100%',
+            height : '100%',
+            maxSuggestItems : 5
+        }).embed(element_layer);
+
+        // iframe을 넣은 element를 보이게 한다.
+        element_layer.style.display = 'block';
+
+        // iframe을 넣은 element의 위치를 화면의 가운데로 이동시킨다.
+        initLayerPosition();
+    }
+
+    // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
+    // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
+    // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
+    function initLayerPosition(){
+        var width = 300; //우편번호서비스가 들어갈 element의 width
+        var height = 400; //우편번호서비스가 들어갈 element의 height
+        var borderWidth = 5; //샘플에서 사용하는 border의 두께
+
+        // 위에서 선언한 값들을 실제 element에 넣는다.
+        element_layer.style.width = width + 'px';
+        element_layer.style.height = height + 'px';
+        element_layer.style.border = borderWidth + 'px solid';
+        // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
+        element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
+        element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+    }
+    </script>
+</th:block>
+
 </html>

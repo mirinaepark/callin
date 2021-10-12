@@ -40,6 +40,7 @@ public class WebConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/js/**")
 				.excludePathPatterns("/dist/**")
 				.excludePathPatterns("/plugins/**")
+				.excludePathPatterns("/joinIdCheck")
 				.excludePathPatterns("/AdminLTE/**");
 		
 		WebMvcConfigurer.super.addInterceptors(registry);
