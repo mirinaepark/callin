@@ -29,19 +29,22 @@ public class WebConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/js/**")
 				.excludePathPatterns("/dist/**")
 				.excludePathPatterns("/plugins/**")
-				.excludePathPatterns("/AdminLTE/**");
+				.excludePathPatterns("/AdminLTE/**")
+				;
 		
 		registry.addInterceptor(loginInterceptor)
 				.addPathPatterns("/**")
-				//.excludePathPatterns("/")
 				.excludePathPatterns("/login")
 				.excludePathPatterns("/join")
+				.excludePathPatterns("/idFind")
+				.excludePathPatterns("/pwFind")
 				.excludePathPatterns("/css/**")
 				.excludePathPatterns("/js/**")
 				.excludePathPatterns("/dist/**")
 				.excludePathPatterns("/plugins/**")
+				.excludePathPatterns("/AdminLTE/**")
 				.excludePathPatterns("/joinIdCheck")
-				.excludePathPatterns("/AdminLTE/**");
+				;
 		
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}

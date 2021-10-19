@@ -18,8 +18,16 @@ public class UserDto {
 	private String userBirth;		// 생일
 	private String userGender;		// 성별
 	private String userPhone;		// 휴대폰번호
+	
+	private String userStatus;		// 유저상태(활동, 재직 등)
 
 	
+	public String getUserStatus() {
+		return userStatus;
+	}
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
 	public String getUserPostCode() {
 		return userPostCode;
 	}
@@ -104,14 +112,14 @@ public class UserDto {
 	public void setUserRegDate(String userRegDate) {
 		this.userRegDate = userRegDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "UserDto [userId=" + userId + ", userPw=" + userPw + ", userName=" + userName + ", userLevel="
-				+ userLevel + ", userEmail=" + userEmail + ", userPostCode=" + userPostCode + ", userAddrDetail="
-				+ userAddrDetail + ", userAddrExtra=" + userAddrExtra + ", userAddr=" + userAddr + ", userRegDate="
+				+ userLevel + ", userEmail=" + userEmail + ", userPostCode=" + userPostCode + ", userAddr=" + userAddr
+				+ ", userAddrDetail=" + userAddrDetail + ", userAddrExtra=" + userAddrExtra + ", userRegDate="
 				+ userRegDate + ", userNickName=" + userNickName + ", userBirth=" + userBirth + ", userGender="
-				+ userGender + ", userPhone=" + userPhone + "]";
+				+ userGender + ", userPhone=" + userPhone + ", userStatus=" + userStatus + "]";
 	}
+	
 	
 }

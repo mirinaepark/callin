@@ -8,30 +8,28 @@
 	<meta name="apple-mobile-web-app-title" content="CodePen">
 
 	<link rel="shortcut icon" type="image/x-icon"
-		href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+		th:href="@{/AdminLTE/dist/img/callinLogo.png}" />
 
 	<link rel="mask-icon" type="image/x-icon"
 		href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
 		color="#111" />
 
-
 	<title>WELLCOM CALLIN</title>
-
-
-
-
+	
 	<style>
 		@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 		/* BASIC */
 
 		html {
-			background-color: #56baed;
+			background-color: #fff;
 		}
 
 		body {
 			font-family: "Poppins", sans-serif;
-			height: 100vh;
+			height: 800px !important;
+			background-color: #56baed;
+			margin: 0px;
 		}
 
 		a {
@@ -68,7 +66,7 @@
 			justify-content: center;
 			width: 100%;
 			min-height: 100%;
-			padding: 20px;
+			top: -20px;
 		}
 
 		#formContent {
@@ -133,6 +131,7 @@
 			-ms-transition: all 0.3s ease-in-out;
 			-o-transition: all 0.3s ease-in-out;
 			transition: all 0.3s ease-in-out;
+			margin-bottom: 10px;
 		}
 
 		input[type=button]:hover,
@@ -173,20 +172,18 @@
 			border-radius: 5px 5px 5px 5px;
 		}
 
-		input[type=text],
+		input[type=text]:focus,
 		input[type=password]:focus {
 			background-color: #fff;
 			border-bottom: 2px solid #5fbae9;
 		}
 
-		input[type=text],
+		input[type=text]:placeholder,
 		input[type=password]:placeholder {
 			color: #cccccc;
 		}
 
 
-
-		/* ANIMATIONS */
 
 		/* Simple CSS3 Fade-in-down Animation */
 		.fadeInDown {
@@ -294,7 +291,6 @@
 			-webkit-animation-delay: 1s;
 			-moz-animation-delay: 1s;
 			animation-delay: 1s;
-			margin-bottom: 10px;
 		}
 
 		/* Simple CSS3 Fade-in Animation */
@@ -332,6 +328,68 @@
 		* {
 			box-sizing: border-box;
 		}
+		
+		/*=========== WAVE ANIMATIONS ===========*/
+		/* Animation */
+		.waves {
+			position: relative;
+			width: 100%;
+			height: 20vh;
+			margin-bottom: -20px;
+			/*Fix for safari gap*/
+			min-height: 100px;
+			max-height: 150px;
+		}
+
+		.parallax>use {
+			animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+		}
+
+		.parallax>use:nth-child(1) {
+			animation-delay: -2s;
+			animation-duration: 7s;
+		}
+
+		.parallax>use:nth-child(2) {
+			animation-delay: -3s;
+			animation-duration: 10s;
+		}
+
+		.parallax>use:nth-child(3) {
+			animation-delay: -4s;
+			animation-duration: 13s;
+		}
+
+		.parallax>use:nth-child(4) {
+			animation-delay: -5s;
+			animation-duration: 20s;
+		}
+
+		@keyframes move-forever {
+			0% {
+				transform: translate3d(-90px, 0, 0);
+			}
+
+			100% {
+				transform: translate3d(85px, 0, 0);
+			}
+		}
+
+		/*Shrinking for mobile*/
+		@media (max-width: 768px) {
+			.waves {
+				height: 40px;
+				min-height: 40px;
+			}
+
+			.content {
+				height: 30vh;
+			}
+
+			h1 {
+				font-size: 24px;
+			}
+		}
 	</style>
 
 	<script>
@@ -350,7 +408,20 @@
 <body>
 	<th:block layout:fragment="customContents"></th:block>
 	<!-- ./wrapper -->
-
+	<div style="width: 100%; position: relative; z-index: 1; top: -130px;">
+		<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+			<defs>
+				<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+			</defs>
+			<g class="parallax">
+				<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+				<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+				<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+				<use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+			</g>
+		</svg>
+	</div>
 	<!-- REQUIRED SCRIPTS -->
 
 	<!-- jQuery -->

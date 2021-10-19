@@ -17,7 +17,7 @@
 	        <div class="card-header">
 	          <h3 class="card-title"></h3>
 	        </div>
-			<form th:action="@{/idFind}" class="form-horizontal" method="post">
+			<form th:action="@{/#}" class="form-horizontal" method="post">
 				<div class="card-body">
 					<div class="form-group row">
 					  	<label for="inputName" class="col-sm-2 col-form-label">이름</label>
@@ -34,7 +34,7 @@
 				</div>
 				<div class="card-footer">
 				  	<button type="submit" class="btn btn-info">Sign in</button>
-				  	<button th:href="@{/pwFind}" type="submit" class="btn btn-default float-right">비밀번호 찾기</button>
+				  	<button th:href="@{/#}" type="submit" class="btn btn-default float-right">비밀번호 찾기</button>
 				</div>
 			</form>
 		</div>

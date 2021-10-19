@@ -25,48 +25,28 @@
 
 		/* BASIC */
 
-
 		html {
-			background-color: #fff;
+			background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
 		}
 
 		body {
 			font-family: "Poppins", sans-serif;
-			height: 800px !important;
-			background-color: #2598c9;
-			margin: 0px;
+			height: 100vh;
+			margin : 0px;
 		}
+
 		a {
 			color: #92badd;
 			display: inline-block;
 			text-decoration: none;
 			font-weight: 400;
 		}
-		
+
 		a[id=socialLogin] {
 			color: #7c7c7c;
 			display: inline-block;
 			text-decoration: none;
 			font-size: small;
-		}
-		
-		p.loginInput {
-			text-align: left;
-			padding-left: 40px;
-			padding-bottom: 0px;
-			margin-bottom: 0px;
-			margin-top: 15px;
-			color: #7c7c7c;
-		}
-		p.userId{
-			display : inline-block;
-			text-align: left;
-			padding-left: 26px;
-			padding-bottom: 0px;
-			margin-bottom: 0px;
-			margin-top: 0px;
-			color: #7c7c7c;
-			width: 300px;
 		}
 
 		h2 {
@@ -89,7 +69,8 @@
 			justify-content: center;
 			width: 100%;
 			min-height: 100%;
-			top: -20px;
+			padding: 20px;
+			
 		}
 
 		#formContent {
@@ -104,7 +85,6 @@
 			-webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
 			box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
 			text-align: center;
-			top: 40px;
 		}
 
 		#formFooter {
@@ -139,7 +119,7 @@
 			background-color: #56baed;
 			border: none;
 			color: white;
-			padding: 13px 80px;
+			padding: 15px 80px;
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
@@ -155,72 +135,7 @@
 			-ms-transition: all 0.3s ease-in-out;
 			-o-transition: all 0.3s ease-in-out;
 			transition: all 0.3s ease-in-out;
-		}
-		
-		input[type=button].idCheckBtn {
-			background-color: #56baed;
-			border: none;
-			color: white;
-			padding: 2px 25px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			text-transform: uppercase;
-			font-size: 13px;
-			-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-			box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-			-webkit-border-radius: 5px 5px 5px 5px;
-			border-radius: 5px 5px 5px 5px;
-			margin: 5px 20px 7px 4px;
-			-webkit-transition: all 0.3s ease-in-out;
-			-moz-transition: all 0.3s ease-in-out;
-			-ms-transition: all 0.3s ease-in-out;
-			-o-transition: all 0.3s ease-in-out;
-			transition: all 0.3s ease-in-out;
-			vertical-align: middle;
-		}
-		input[type=text]#userPostCode{
-			background-color: #f6f6f6;
-			border: none;
-			color: #0d0d0d;
-			padding: 13px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 16px;
-			margin: 0px;
-			margin-left: 21px;
-			width: 50%;
-			border: 2px solid #f6f6f6;
-			-webkit-transition: all 0.5s ease-in-out;
-			-moz-transition: all 0.5s ease-in-out;
-			-ms-transition: all 0.5s ease-in-out;
-			-o-transition: all 0.5s ease-in-out;
-			transition: all 0.5s ease-in-out;
-			-webkit-border-radius: 5px 5px 5px 5px;
-			border-radius: 5px 5px 5px 5px;
-		}
-		input[type=button]#emailSearch {
-			background-color: #56baed;
-			border: none;
-			color: white;
-			padding: 13px 0px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			text-transform: uppercase;
-			font-size: 13px;
-			-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-			box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-			-webkit-border-radius: 5px 5px 5px 5px;
-			border-radius: 5px 5px 5px 5px;
-			margin: 5px 20px 5px 20px;
-			-webkit-transition: all 0.3s ease-in-out;
-			-moz-transition: all 0.3s ease-in-out;
-			-ms-transition: all 0.3s ease-in-out;
-			-o-transition: all 0.3s ease-in-out;
-			transition: all 0.3s ease-in-out;
-			width: 30%;
+			margin-bottom: 10px;
 		}
 
 		input[type=button]:hover,
@@ -240,17 +155,16 @@
 		}
 
 		input[type=text],
-		input[type=date],
 		input[type=password] {
 			background-color: #f6f6f6;
 			border: none;
 			color: #0d0d0d;
-			padding: 13px 32px;
+			padding: 15px 32px;
 			text-align: center;
 			text-decoration: none;
 			display: inline-block;
 			font-size: 16px;
-			margin: 0px;
+			margin: 5px;
 			width: 85%;
 			border: 2px solid #f6f6f6;
 			-webkit-transition: all 0.5s ease-in-out;
@@ -263,7 +177,6 @@
 		}
 
 		input[type=text]:focus,
-		input[type=date]:focus,
 		input[type=password]:focus {
 			background-color: #fff;
 			border-bottom: 2px solid #5fbae9;
@@ -384,7 +297,6 @@
 			-webkit-animation-delay: 1s;
 			-moz-animation-delay: 1s;
 			animation-delay: 1s;
-			margin-bottom: 10px;
 		}
 
 		/* Simple CSS3 Fade-in Animation */
@@ -408,6 +320,7 @@
 		}
 
 
+
 		/* OTHERS */
 
 		*:focus {
@@ -415,27 +328,67 @@
 		}
 
 		#icon {
-			width: 200px;
-			height: 200px;
+			width: 60%;
 		}
 
 		* {
 			box-sizing: border-box;
 		}
-		
-		
-		
-		/*=========== WAVE ANIMATIONS ===========*/
-		/* Animation */
+
+
+
+
+
+		@import url(//fonts.googleapis.com/css?family=Lato:300:400);
+
+		.header {
+			position: relative;
+			text-align: center;
+			background: linear-gradient(60deg, rgba(84, 58, 183, 1) 0%, rgba(0, 172, 193, 1) 100%);
+			color: white;
+		}
+
+		.logo {
+			width: 50px;
+			fill: white;
+			padding-right: 15px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.inner-header {
+			height: 65vh;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		.flex {
+			/*Flexbox for containers*/
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+
 		.waves {
 			position: relative;
 			width: 100%;
-			height: 20vh;
-			margin-bottom: -20px;
+			height: 15vh;
+			margin-bottom: -7px;
 			/*Fix for safari gap*/
 			min-height: 100px;
 			max-height: 150px;
 		}
+
+		.content {
+			position: relative;
+			height: 20vh;
+			text-align: center;
+			background-color: white;
+		}
+
+		/* Animation */
 
 		.parallax>use {
 			animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
@@ -486,6 +439,17 @@
 				font-size: 24px;
 			}
 		}
+
+		.wrapper {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+			width: 100%;
+			min-height: 100%;
+			padding: 20px;
+			margin-top: 250px;
+		}
 	</style>
 
 	<script>
@@ -499,38 +463,59 @@
 	</script>
 	<!-- jQuery -->
 	<script th:src="@{/AdminLTE/plugins/jquery/jquery.min.js}"></script>
+
 </head>
 
 <body>
-	<th:block layout:fragment="customContents"></th:block>
-	<!-- ./wrapper -->
-	<div style="width: 100%; position: relative; z-index: 1; top: -700px;">
-		<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-			viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-			<defs>
-				<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-			</defs>
-			<g class="parallax">
-				<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-				<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-				<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-				<use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-			</g>
-		</svg>
+	<div class="header" style="height: 750px;">
+
+		<!--Content before waves-->
+		<div class="inner-header flex">
+			<!--Just the logo.. Don't mind this-->
+			<th:block layout:fragment="customContents"></th:block>
+		</div>
+
+		<!--Waves Container-->
+		<div>
+			<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+				viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto" style="top: 170px;">
+				<defs>
+					<path id="gentle-wave"
+						d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+				</defs>
+				<g class="parallax">
+					<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+					<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+					<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+					<use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+				</g>
+			</svg>
+		</div>
+		<!--Waves end-->
+
 	</div>
+	<!--Header ends-->
+
+	<!--Content starts-->
+	<!--Content ends-->
+
+	<!-- ./wrapper -->
+
 	<!-- REQUIRED SCRIPTS -->
 
+	<!-- jQuery -->
+	<script th:src="@{/AdminLTE/plugins/jquery/jquery.min.js}"></script>
 	<!-- Bootstrap -->
 	<script th:src="@{/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<!-- AdminLTE -->
 	<script th:src="@{/AdminLTE/dist/js/adminlte.js}"></script>
 
 	<!-- OPTIONAL SCRIPTS -->
-<!--	<script th:src="@{/AdminLTE/plugins/chart.js/Chart.min.js}"></script>-->
+	<!--	<script th:src="@{/AdminLTE/plugins/chart.js/Chart.min.js}"></script>-->
 	<!-- AdminLTE for demo purposes -->
-<!--	<script th:src="@{/AdminLTE/dist/js/demo.js}"></script>-->
+	<!--	<script th:src="@{/AdminLTE/dist/js/demo.js}"></script>-->
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<!--	<script th:src="@{/AdminLTE/dist/js/pages/dashboard3.js}"></script>-->
+	<!--	<script th:src="@{/AdminLTE/dist/js/pages/dashboard3.js}"></script>-->
 
 </body>
 

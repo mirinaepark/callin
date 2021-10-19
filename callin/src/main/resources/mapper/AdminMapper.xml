@@ -9,11 +9,17 @@
 	<!-- 전체 회원 조회 쿼리문 -->
 	<select id="getUserList" resultType="UserDto">
 		SELECT 
-			  user_id			AS userId
-			, user_pw			AS userPw
-			, user_name			AS userName
-			, user_email		AS userEmail
-			, user_level		AS userLevel
+			  user_level			AS userLevel
+			, user_id				AS userId
+			, user_name				AS userName
+			, user_nickname			AS userNickName
+			, user_gender			AS userGender
+			, user_birth			AS userBirth
+			, user_phone			AS userPhone
+			, user_email			AS userEmail
+			, user_addr				AS userAddr
+			, user_join_date		AS userRegDate
+			, user_withdraw_status 	AS userStatus
 		FROM 
 			user_info
 	</select>

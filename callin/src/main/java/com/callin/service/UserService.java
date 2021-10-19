@@ -59,5 +59,47 @@ public class UserService {
 		
 		return joinIdCheck;
 	}
-
+	
+	// 회원가입 처리
+	public int joinUser(UserDto userDto) {
+		// 주소, 상세주소, 참고사항 DTO에서 get하여 하나의 주소 문자열로 결합 
+		String postCode		= userDto.getUserPostCode().trim();
+		String addr 		= " "+userDto.getUserAddr().trim();
+		String addrDetail 	= " "+userDto.getUserAddrDetail().trim();
+		String addrExtra	= " "+userDto.getUserAddrExtra().trim();
+		String lastAddr 	= postCode + addr + addrDetail + addrExtra;
+		
+		// 결합한 주소 문자열을 DTO의 userAddr에 세팅
+		userDto.setUserAddr(lastAddr);
+		
+		System.out.println("결합 완성 된 주소 (UserService.java): " + userDto.getUserAddr());
+		
+		return userMapper.joinUser(userDto);
+	}
+	
+	// 한명 회원 조회
+	public UserDto getOneUserInfo(String userId) {
+		return userMapper.getUserRead(userId);
+	}
+	
+	// 회원 정보 수정
+	public int updateUserInfo(UserDto userDto) {
+		int result = userMapper.updateUser(userDto);
+		
+		if(userDto.getUserPostCode() != null && userDto.getUserAddrDetail() != null) {
+			// 주소, 상세주소, 참고사항 DTO에서 get하여 하나의 주소 문자열로 결합 
+			String postCode		= userDto.getUserPostCode().trim();
+			String addr 		= " "+userDto.getUserAddr().trim();
+			String addrDetail 	= " "+userDto.getUserAddrDetail().trim();
+			String addrExtra	= " "+userDto.getUserAddrExtra().trim();
+			String lastAddr 	= postCode + addr + addrDetail + addrExtra;
+			
+			// 결합한 주소 문자열을 DTO의 userAddr에 세팅
+			userDto.setUserAddr(lastAddr);
+			
+			System.out.println("결합 완성 된 주소 (UserService.java): " + userDto.getUserAddr());
+			result = userMapper.updateUser(userDto);
+		}
+		return result;
+	}
 }

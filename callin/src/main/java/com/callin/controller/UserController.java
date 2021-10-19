@@ -28,18 +28,25 @@ public class UserController {
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
-
+// ================================================================================================={ 로그인 관련 Controller } 
 	// 로그인 화면으로 이동
 	@GetMapping("/login")
-	public String login(@RequestParam(name = "result"  , required = false)String result, Model model
-					   ,@RequestParam(name = "resultId", required = false)String resultId
-					   ,@RequestParam(name = "resultPw", required = false)String resultPw) {
+	public String login(@RequestParam(name = "result"     , required = false)String result, Model model
+					   ,@RequestParam(name = "resultId"   , required = false)String resultId
+					   ,@RequestParam(name = "resultPw"   , required = false)String resultPw
+					   ,@RequestParam(name = "joinSuccess", required = false)String joinSuccess) {
 		model.addAttribute("title", "로그인화면");
+		
 		if (result != null) {
 			model.addAttribute("result", result);
 			model.addAttribute("resultId", resultId);
 			model.addAttribute("resultPw", resultPw);
+			System.out.println(result);
+			System.out.println(resultId);
+			System.out.println(resultPw);
 		}
+
+		model.addAttribute("joinSuccess", joinSuccess);
 		return "userPage/login";
 	}
 
@@ -69,7 +76,7 @@ public class UserController {
 
 		// 2. 회원이 없다면 redirect:/login result => 등록된 정보가 없습니다.
 		redirectAttr.addAttribute("result", "false");
-		redirectAttr.addAttribute("resultPw", loginId);
+		redirectAttr.addAttribute("resultId", loginId);
 		redirectAttr.addAttribute("resultPw", loginPw);
 		return "redirect:/login";
 	}
@@ -80,32 +87,25 @@ public class UserController {
 		session.invalidate();
 		return "redirect:login";
 	}
-
+// ================================================================================================={ 회원가입 관련 Controller }
 	// 회원가입 화면으로 이동
 	@GetMapping("/join")
 	public String join(Model model) {
 		model.addAttribute("title", "회원가입");
 		return "userPage/join";
 	}
-	
+
 	// 회원가입 처리
 	@PostMapping("/join")
-	public String join(	@RequestParam(name = "inputName"	, required = false) String name,
-						@RequestParam(name = "inputId"		, required = false) String id,
-						@RequestParam(name = "inputPw"		, required = false) String pw,
-						@RequestParam(name = "inputEmail"	, required = false) String email,
-						@RequestParam(name = "inputPhoneNum", required = false) String phoneNum,
-						@RequestParam(name = "inputNick"	, required = false) String nick) {
-		System.out.println(name);
-		System.out.println(id);
-		System.out.println(pw);
-		System.out.println(email);
-		System.out.println(phoneNum);
-		System.out.println(nick);
-
+	public String join(UserDto userDto, RedirectAttributes reAttr) {
 		
+		System.out.println("화면에서 입력받은 회원가입 정보 (UserController.java): " + userDto.toString());
 		
-		return "userPage/login";
+		if(userDto != null) {
+			userService.joinUser(userDto);
+		}
+		reAttr.addAttribute("joinSuccess", "joinSuccess");
+		return "redirect:/login";
 	}
 
 	// 아이디 중복 체크하는 Ajax
@@ -121,7 +121,47 @@ public class UserController {
 
 		return joinIdCheck;
 	}
-
+// ================================================================================================={ 회원정보 수정 관련 Controller }
+	
+	@GetMapping("/updateInfo")
+	public String updateInfo(@RequestParam(name="userId", required = false)String userId, Model model
+							,@RequestParam(name="fail", required = false)String fail
+							,@RequestParam(name="failId", required = false)String failId
+							) {
+		System.out.println("전체회원리스트에서 선택한 수정할 아이디 : " + userId);
+		
+		if(userId != null) {
+			UserDto userDto = userService.getOneUserInfo(userId);
+			model.addAttribute("userDto", userDto);
+		}
+		
+		System.out.println("fail : " + fail);
+		System.out.println("failId : " + failId);
+		model.addAttribute("fail", fail);
+		model.addAttribute("failId", failId);
+		model.addAttribute("title", "회원정보수정");
+		return "userPage/updateInfo";
+	}
+	
+	@PostMapping("/updateInfo")
+	public String updateInfo(Model model, UserDto userDto, RedirectAttributes reAttr) {
+		System.out.println("수정완료한 회원정보 DTO (UserController.java)" + userDto);
+		
+		
+		
+		if(userDto != null) {
+			userService.updateUserInfo(userDto);
+			return "redirect:/userList";
+		}
+		
+		@SuppressWarnings("null")
+		String failId = userDto.getUserId();
+		reAttr.addAttribute("failId", failId);
+		reAttr.addAttribute("fail", "fail");
+		return "redirect:/updateInfo";
+	}
+	
+// ================================================================================================={ 아이디,비번 찾기 관련 Controller }
 	// 아이디, 비밀번호 찾기
 	@GetMapping("/idFind")
 	public String idFind(Model model) {
@@ -142,7 +182,14 @@ public class UserController {
 		model.addAttribute("title", "비밀번호 찾기");
 		return "userPage/pwFind";
 	}
-
+// ================================================================================================={ 수업 관련 Controller }
+	// 수업
+	@GetMapping("/lesson")
+	public String lesson(Model model) {
+		model.addAttribute("title", "수업정보");
+		return "userPage/lesson";
+	}
+	
 	// 나의 수업
 	@GetMapping("/myLesson")
 	public String myLesson(Model model) {
@@ -177,19 +224,4 @@ public class UserController {
 		model.addAttribute("title", "수강/결제내역");
 		return "userPage/lessonDetail";
 	}
-
-	// 이벤트
-	@GetMapping("/event")
-	public String event(Model model) {
-		model.addAttribute("title", "이벤트");
-		return "userPage/event";
-	}
-
-	// 환불
-	@GetMapping("/counsel")
-	public String counsel(Model model) {
-		model.addAttribute("title", "Q&A");
-		return "userPage/counsel";
-	}
-
 }

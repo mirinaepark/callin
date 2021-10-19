@@ -9,15 +9,50 @@
 	<!-- 한명 회원 조회 쿼리문 -->
 	<select id="getUserRead" resultType="UserDto" parameterType="String">
 		SELECT 
-			  user_id			AS userId
-			, user_pw			AS userPw
-			, user_name			AS userName
-			, user_email		AS userEmail
-			, user_level		AS userLevel
+			  user_id				AS userId
+			, user_pw				AS userPw
+			, user_name				AS userName
+			, user_level			AS userLevel
+			, user_nickname			AS userNickName
+			, user_birth			AS userBirth
+			, user_gender			AS userGender
+			, user_addr				AS userAddr
+			, user_email			AS userEmail
+			, user_phone			AS userPhone
+			, user_withdraw_status	AS userStatus
 		FROM 
 			user_info
 		WHERE
 			user_id = #{userId}
 	</select>
+	<insert id="joinUser" parameterType="UserDto">
+		INSERT INTO user_info
+			( user_id				
+			, user_pw				
+			, user_name				
+			, user_level			
+			, user_nickname			
+			, user_birth			
+			, user_gender	
+			, user_addr		
+			, user_email			
+			, user_phone
+			, user_withdraw_status
+			, user_join_date
+		) VALUES (
+			  #{userId}
+			, #{userPw}
+			, #{userName}
+			, #{userLevel}
+			, #{userNickName}
+			, #{userBirth}
+			, #{userGender}
+			, #{userAddr}
+			, #{userEmail}
+			, #{userPhone}
+			, #{userStatus}
+			, CURDATE()
+		);
+	</insert>
 	
 </mapper>

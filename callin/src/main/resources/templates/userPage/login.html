@@ -4,16 +4,21 @@
 
 <!-- contents layout:fragment 정의 -->
 <th:block layout:fragment="customContents">
-	<div class="wrapper fadeInDown">
+	<div id="wrapper" class="wrapper fadeInDown" style="position: relative; z-index: 2;">
 		<div id="formContent">
-			<!-- Tabs Titles -->
+			<!-- 회원가입하여 로그인패이지로 이동 시 -->
+			<input type="hidden" id="joinSuccess" th:value="${joinSuccess}" />
+
+			<!-- 로그인 -->
 			<a th:href="@{/login}">
-				<h2 class="active"> Sign In </h2>
+				<h2 class="active">Sign In</h2>
 			</a>
+
+			<!-- 학생회원가입 -->
 			<a th:href="@{/join}">
-				<h2 class="inactive underlineHover">Sign Up </h2>
+				<h2 class="inactive underlineHover">Sign Up</h2>
 			</a>
-			
+
 			<!-- Icon -->
 			<div class="fadeIn first img">
 				<img th:src="@{/AdminLTE/dist/img/callinLogo.png}" id="icon" alt="User Icon" />
@@ -22,28 +27,35 @@
 			<!-- Login Form -->
 			<form th:action="@{/login}" method="post">
 				<!-- 로그인 정보 default -->
-				<input type="text" 		id="login" 	  class="fadeIn second loginInput" name="loginId" th:if="${#strings.isEmpty(resultId)}" 		value="adid001">
-				<input type="password" 	id="password" class="fadeIn third  loginInput" name="loginPw" th:if="${#strings.isEmpty(resultPw)}" 		value="adpw001">
-				
-				<!-- 로그인 실패시 입력정보 유지 -->
-				<input type="text" 		id="login" 	  class="fadeIn second loginInput" name="loginId" th:if="${not #strings.isEmpty(resultId)}" 	th:value="${resultId}">
-				<input type="password" 	id="password" class="fadeIn third  loginInput" name="loginPw" th:if="${not #strings.isEmpty(resultPw)}" 	th:value="${resultPw}">
-				
+				<input type="text" id="login" class="fadeIn second loginInput" name="loginId" th:value="${resultId}"
+					placeholder="아이디를 입력해주세요."/>
+				<input type="password" id="password" class="fadeIn third  loginInput" name="loginPw"
+					th:value="${resultPw}" placeholder="패스워드를 입력해주세요."/>
+
+				<!-- 로그인 실패시 입력정보 유지 및 경고문구 노출 -->
+				<input type="hidden" id="loginCheck" th:value="${result}" />
+				<p id="loginCheckResult" class="fadeIn third  loginInput"></p>
+
 				<!-- 로그인 버튼 -->
-				<input type="submit" 	id="submitBtn" class="fadeIn fourth" value="Log In" >
+				<input type="submit" id="submitBtn" class="fadeIn fourth" value="Log In" />
 			</form>
 			<div id="formSecond">
 				<a id="socialLogin" class="fadeIn fourth" href="#">Or Sign Up Using</a>
 			</div>
+
+			<!-- 카카오 로그인 -->
 			<div class="fadeIn fourth">
-				<img style="width: 204px; height: 50px;" th:src="@{/AdminLTE/dist/img/cacaoLogo.png}" id="icon" alt="User Icon" />
+				<img style="width: 204px; height: 50px; margin-bottom: 10px;"
+					th:src="@{/AdminLTE/dist/img/cacaoLogo.png}" id="icon" alt="User Icon" />
 			</div>
-			
+
 			<!-- Remind Passowrd -->
-			<div id="formFooter">
-				<a class="underlineHover" href="#">Forgot Password?</a>
+			<div id="formFooter" class="fadeIn fourth">
+				<a class="underlineHover" th:href="@{/idFind}" style="margin-right: 48px;">아이디찾기</a>
+				<a class="underlineHover" th:href="@{/pwFind}">패스워드찾기</a>
 			</div>
 		</div>
+		
 	</div>
 	<script type="text/javascript">
 		$(function () {
@@ -52,6 +64,26 @@
 			}).mouseout(function () {
 				$(this).css('cursor', 'normal');
 			})
+			
+			if($('#login').val()=='' && $('#password').val()==''){
+				$('#login').val('adid001');
+				$('#password').val('adpw001');
+			}
+			var joinSuccess = $('#joinSuccess').val();
+			if (joinSuccess == 'joinSuccess') {
+				alert('CALLIN 회원가입을 축하드립니다.😆\r로그인을 해주세요.');
+			}
+
+			if ($('#loginCheck').val() == 'false') {
+				$('#loginCheckResult').text('✔아이디, 패스워드가 일치하지 않습니다. :p');
+				$('#loginCheckResult').css('color', 'red');
+				$('#wrapper').removeClass('fadeInDown');
+				$('#wrapper').find('input').removeClass('fadeIn');
+				$('#wrapper').find('p').removeClass('fadeIn');
+				$('#wrapper').find('a').removeClass('fadeIn');
+				$('#wrapper').find('div').removeClass('fadeIn');
+				$('#formContent').css({'margin-top':'35px'})
+			};
 		});
 
 		// 엔터 쳤을 때 로그인 버튼 누르게 하는거
@@ -59,7 +91,9 @@
 			if (key.keyCode == 13) {
 				$('#submitBtn').click();
 			}
-		});			
+		});
+
+
 	</script>
 </th:block>
 

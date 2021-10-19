@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.method.HandlerMethod;
+//import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +20,7 @@ public class CallinInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		HandlerMethod method = (HandlerMethod) handler;
+//		HandlerMethod method = (HandlerMethod) handler;
 		
 		log.info("CommonInterceptor=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-START");
 		log.info("Acess Info =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- START");
@@ -28,7 +28,7 @@ public class CallinInterceptor implements HandlerInterceptor {
 		log.info("serverName		::::::::			{}", request.getServerName());
 		log.info("method			::::::::			{}", request.getMethod());
 		log.info("URI				::::::::			{}", request.getRequestURI());
-		log.info("CONTROLLER		::::::::			{}", method.getBean().getClass().getSimpleName());
+//		log.info("CONTROLLER		::::::::			{}", method.getBean().getClass().getSimpleName());
 		log.info("Acess Info =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- END");
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	};

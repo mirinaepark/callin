@@ -1,79 +1,74 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="@{layout/defaultJoin}">
+	layout:decorate="@{layout/defaultUpdate}"> 
 
-<!-- contents layout:fragment 정의 -->
-<th:block layout:fragment="customContents">
+<!-- contents layout:fragment 정의 --> 
+<th:block layout:fragment="customContents"> 
 	<div class="wrapper fadeInDown" style="position: relative; z-index: 2;">
 		<div id="formContent">
 		
 			<!-- Tabs Titles -->
-			<a th:href="@{/login}">
-				<h2 class="inactive underlineHover"> Sign In </h2>
-			</a>
 			<a th:href="@{/join}">
-				<h2 class="active">Sign Up </h2>
+				<h2 class="active">회원정보수정</h2>
+			</a>
+			<a th:href="@{/userList}">
+				<h2 class="inactive underlineHover">돌아가기</h2>
 			</a>
 			
 			<!-- Icon -->
 			<div class="fadeIn first">
-				<img th:src="@{/AdminLTE/dist/img/callinLogo2.png}" id="icon" alt="User Icon" />
+				<img th:src="@{/AdminLTE/dist/img/callinLogo2.png}" id="icon" alt="User Icon"/>
 			</div>
 
 			<!-- Login Form -->
-			<form id="joinForm" th:action="@{/join}" method="post">
+			<form id="joinForm" th:action="@{/updateInfo}" method="post">
 				<!-- 회원가입 입력정보 시작 -->
-				<label for="userId">
-					<p class="fadeIn third loginInput userId">아이디</p>
-					<input type="button" id="idCheckBtn" 	class="fadeIn third idCheckBtn" 		value="중복체크">
-				</label>
-				<input type="text" 		id="userId" 	  	class="fadeIn third loginInput" 		name="userId" 		placeholder="영 소문자, 숫자 4~20자리"/>
-				<p class="fadeIn third loginInput" id="idCheckResult"></p>
-				
-				<!-- 권한 Default Setting (hidden처리) -->
-				<input type="hidden" 	id="userLevel" 		name="userLevel"  value="학생"/>
-				<input type="hidden" 	id="userStatus" 	name="userStatus" value="활동"/>
+				<input type="hidden" 	id="userId" 		name="userId"  		th:value="${userDto.userId}"/>
+				<input type="hidden" 	id="userLevel" 		name="userLevel"  	th:value="${userDto.userLevel}"/>
+				<input type="hidden" 	id="userStatus" 	name="userStatus"  	th:value="${userDto.userStatus}"/>
 				
 				<label for="userPw"><p class="fadeIn third loginInput">패스워드</p></label>
-				<input type="password" 	id="userPw" 		class="fadeIn third loginInput idCheck" name="userPw" 		placeholder="6자 ~ 18자 사이 숫자, 영문" 	readonly/>
+				<input type="password" 	id="userPw" 		th:value="${userDto.userPw}" class="fadeIn third loginInput idCheck" name="userPw" 		placeholder="6자 ~ 18자 사이 숫자, 영문"/>
 				
 				<label for="userPwCheck"><p class="fadeIn third loginInput">패스워드 확인</p></label>
-				<input type="password" 	id="userPwCheck" 	class="fadeIn third loginInput idCheck" name="userPwCheck" 	placeholder="패스워드를 한번 더 입력해주세요." 	readonly/>
+				<input type="password" 	id="userPwCheck" 	th:value="${userDto.userPw}" class="fadeIn third loginInput idCheck" name="userPwCheck" 	placeholder="패스워드를 한번 더 입력해주세요."/>
 				
 				<label for="userName"><p class="fadeIn third loginInput">이름</p></label>
-				<input type="text"		id="userName"		class="fadeIn third loginInput idCheck" name="userName" 	placeholder="이름을 입력해주세요." 			readonly/>
+				<input type="text"		id="userName"		th:value="${userDto.userName}" class="fadeIn third loginInput idCheck" name="userName" 	placeholder="이름을 입력해주세요."/>
 				
 				<label for="userNickName"><p class="fadeIn third loginInput">닉네임</p></label>
-				<input type="text"		id="userNickName"	class="fadeIn third loginInput idCheck" name="userNickName" placeholder="닉네임을 입력해주세요." 	style="margin-bottom: 20px;" readonly/><br>
+				<input type="text"		id="userNickName"	th:value="${userDto.userNickName}" class="fadeIn third loginInput idCheck" name="userNickName" placeholder="닉네임을 입력해주세요." 	style="margin-bottom: 20px;" /><br>
 				
-				<div class="fadeIn third loginInput idCheck" style="color: #7c7c7c; text-align: left; padding-left: 38px;" readonly>
+				<div class="fadeIn third loginInput idCheck" style="color: #7c7c7c; text-align: left; padding-left: 38px;">
 					성별 &emsp; : &emsp;
 					<label for="userGenderMan"> 
-						<input type="radio" id="userGenderMan" name="userGender" value="남" checked="checked">남자
+						<input type="radio" id="userGenderMan" name="userGender" value="남" th:checked="${userDto.userGender eq '남'}"/>남자
 					</label> 
 						&emsp;&emsp;
 					<label for="userGenderGirl"> 
-						<input type="radio" id="userGenderGirl" name="userGender" value="여">여자
+						<input type="radio" id="userGenderGirl" name="userGender" value="여" th:checked="${userDto.userGender eq '여'}"/>여자
 					</label>
 				</div>
 														
 				<label for="userEmail"><p class="fadeIn third loginInput">이메일</p></label>
-				<input type="text"		id="userEmail"		class="fadeIn third loginInput idCheck" name="userEmail" 	placeholder="ex) exam@exam.com" 	readonly/>
+				<input type="text"		id="userEmail"		th:value="${userDto.userEmail}" class="fadeIn third loginInput idCheck" name="userEmail" placeholder="ex) exam@exam.com"/>
 				
 				<label for="userPhone"><p class="fadeIn third loginInput">휴대폰번호</p></label>
-				<input type="text"		id="userPhone"		class="fadeIn third loginInput idCheck" name="userPhone" 	placeholder="휴대폰번호를 입력해주세요." 	maxlength="13" readonly/>
+				<input type="text"		id="userPhone"		th:value="${userDto.userPhone}" class="fadeIn third loginInput idCheck" name="userPhone" placeholder="휴대폰번호를 입력해주세요." maxlength="13"/>
 				
 				<label for="userBirth">	<p class="fadeIn third loginInput">생일</p></label>
-				<input type="date"		id="userBirth"		class="fadeIn third loginInput idCheck" name="userBirth"  	readonly/>
+				<input type="date"		id="userBirth"		th:value="${userDto.userBirth}" class="fadeIn third loginInput idCheck" name="userBirth"/>
 				
 				<!-- 우편번호 찾기 영역 시작 -->
-				<label for="userAddr"><p class="fadeIn third loginInput idCheck" readonly>주소</p></label>
-				<input type="text" 	 id="userPostCode" 	 name="userPostCode"   class="fadeIn third loginInput idCheck" placeholder="우편번호" 	readonly>
-				<input type="button" id="emailSearch" 	 name="emailSearch"	   class="fadeIn third loginInput idCheck" value="우편번호 찾기" 	readonly><br>
-				<input type="text" 	 id="userAddr" 		 name="userAddr"	   class="fadeIn third loginInput idCheck" placeholder="주소" 	style="margin-top: 10px;" 		readonly><br>
-				<input type="text" 	 id="userAddrDetail" name="userAddrDetail" class="fadeIn third loginInput idCheck" placeholder="상세주소" 	style="margin-top: 10px;" 		readonly>
-				<input type="text" 	 id="userAddrExtra"  name="userAddrExtra"  class="fadeIn third loginInput idCheck" placeholder="참고항목" 	style="margin-top: 10px;" 		readonly>
+				<label for="userAddr"><p class="fadeIn third loginInput idCheck" >주소</p></label>
+				<input type="text" 	 id="userPostCode" 	 name="userPostCode"   class="fadeIn third loginInput idCheck" placeholder="우편번호">
+				<input type="button" id="emailSearch" 	 name="emailSearch"	   class="fadeIn third loginInput idCheck" value="우편번호 찾기"><br>
+				<input type="text" 	 id="userAddr" 		 name="userAddr"	   class="fadeIn third loginInput idCheck" placeholder="주소를 선택하지 않으면" 	style="margin-top: 10px;"><br>
+				<input type="text" 	 id="userAddrDetail" name="userAddrDetail" class="fadeIn third loginInput idCheck" placeholder="기존 주소 정보로" 	style="margin-top: 10px;">
+				<input type="text" 	 id="userAddrExtra"  name="userAddrExtra"  class="fadeIn third loginInput idCheck" placeholder="유지 됩니다." 	style="margin-top: 10px;">
 				
+				<!-- 주소 선택 없을 시 기존 주소 정보 유지 -->
+				<input type="hidden" id="userAddrDefault" name="userAddr" th:value="${userDto.userAddr}"/>
 				<!-- 
 					우편번호 API 를 통해 띄운 레이어임.
 					iOS에서는 position:fixed 버그가 있음
@@ -88,7 +83,7 @@
 							alt="닫기 버튼">
 				</div>
 				<!-- 우편번호 찾기 영역 종료 -->
-
+				
 				<!-- 회원가입 버튼 -->
 				<input type="button" 	id="submitBtn" class="fadeIn fourth" value="Sign Up" style="margin-top: 20px; margin-bottom: 20px;">
 			</form>
@@ -96,6 +91,16 @@
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			
+			// 서버에서 넘겨받은 변수 데이터를 자바스크립트에서 받는 방법 (CDATA)
+			/* <![CDATA[ */
+			var fail = "[[${fail}]]"
+			/* ]]> */
+			
+			if(fail == 'fail'){
+				alert("회원 수정에 실패하였습니다.");
+			}
+			
 			$('#submitBtn').mouseenter(function () {
 				$(this).css('cursor', 'pointer');
 			}).mouseout(function () {
@@ -109,95 +114,50 @@
 				}
 			});
 			
-			// 아이디 중복체크 Ajax
-			$('#idCheckBtn').click(function(){
-				// 화면에서 입력한 아이디
-				var userIdCheck = $('#userId').val();
-				
-				console.log("화면에서 입력한 아이디 (join.html) : ",userIdCheck);
-				
-				//Ajax로 서버에 요청하는 부분
-				var request = $.ajax({
-					url :  '/joinIdCheck',
-					method : 'POST',
-					data : {userIdCheck : userIdCheck},
-					dataType : "json"
-				});
-				
-				// Ajax 를 통해 서버에서 응답받은 데이터
-				request.done(function( data ){
-					console.log("false = 중복o / true = 중복x : " + data);							
-					
-					if (data == false) {
-						// false : 아이디가 중복되는 문구
-						$("#idCheckResult").text("✔사용중인 아이디입니다 :p");
-						$("#idCheckResult").css("color", "red");
-						$('.idCheck').attr('readonly',true);
-					} else if(data == true) {
-						// 아이디 정규식
-						if(!/^[a-z0-9]{4,20}$/.test($('#userId').val())){
-							$("#idCheckResult").text("✔아이디는 영 소문자, 숫자 4~20자리로 입력해주세요.");
-							$("#idCheckResult").css("color", "red");
-							$('.idCheck').attr('readonly',true);
-						} else {
-							$("#idCheckResult").text("⭕사용 가능한 아이디 입니다. :p");
-							$("#idCheckResult").css("color", "blue");
-							$('.idCheck').attr('readonly',false);
-							$('#emailSearch').attr('onclick','execDaumPostcode()')
-						};
-					};
-				});
-				
-				//Ajax 실패시 에러문구
-				request.fail(function(jqXHR, textStatus){
-					alert("Request failed : " + textStatus);
-				});
-			});   // 아이디 중복체크 AJAX 스크립트 종료
-		});
-		
-		// 아이디 중복체크 전 다른 input 클릭시 이벤트
-		$(document).on('click', '.idCheck' ,function(){
-			if($('.idCheck').attr('readonly') == 'readonly'){
-				alert("아이디 중복체크를 먼저 해주세요.");
-				this.blur();
-				$('#userId').focus();
-			}
-		})
-		
-		// 전화번호 자동 하이폰 스크립트 시작
-		var autoHypenPhone = function(str) {
-			str = str.replace(/[^0-9]/g, '');
-			var tmp = '';
-			if (str.length < 4) {
+			$('#submitBtn').on('click',function(){
+				if($('#userAddr').val() == ''){
+					$('#userAddr').removeAttr('name');
+				}else{
+					$('#userAddrDefault').removeAttr('name');
+				}
+			})
+			
+			// 전화번호 자동 하이폰 스크립트 시작
+			var autoHypenPhone = function(str) {
+				str = str.replace(/[^0-9]/g, '');
+				var tmp = '';
+				if (str.length < 4) {
+					return str;
+				} else if (str.length < 7) {
+					tmp += str.substr(0, 3);
+					tmp += '-';
+					tmp += str.substr(3);
+					return tmp;
+				} else if (str.length < 11) {
+					tmp += str.substr(0, 3);
+					tmp += '-';
+					tmp += str.substr(3, 3);
+					tmp += '-';
+					tmp += str.substr(6);
+					return tmp;
+				} else {
+					tmp += str.substr(0, 3);
+					tmp += '-';
+					tmp += str.substr(3, 4);
+					tmp += '-';
+					tmp += str.substr(7);
+					return tmp;
+				}
 				return str;
-			} else if (str.length < 7) {
-				tmp += str.substr(0, 3);
-				tmp += '-';
-				tmp += str.substr(3);
-				return tmp;
-			} else if (str.length < 11) {
-				tmp += str.substr(0, 3);
-				tmp += '-';
-				tmp += str.substr(3, 3);
-				tmp += '-';
-				tmp += str.substr(6);
-				return tmp;
-			} else {
-				tmp += str.substr(0, 3);
-				tmp += '-';
-				tmp += str.substr(3, 4);
-				tmp += '-';
-				tmp += str.substr(7);
-				return tmp;
-			}
-			return str;
-		};	
-		var userPhone = document.getElementById('userPhone');
-	
-		userPhone.onkeyup = function() {
-			console.log(this.value);
-			this.value = autoHypenPhone(this.value);
-		};  // 전화번호 자동 하이폰 스크립트 종료
+			};	
+			var userPhone = document.getElementById('userPhone');
+		
+			userPhone.onkeyup = function() {
+				console.log(this.value);
+				this.value = autoHypenPhone(this.value);
+			};
+			// 전화번호 자동 하이폰 스크립트 종료
+		});
 		
 		// 회원가입 유효성 검사 시작
 		$('#submitBtn').click(function(){
@@ -288,21 +248,7 @@
 						submitFlag = false;
 						return submitFlag;
 					}
-				}else if(inputId == 'userAddr'){
-					if(inputValue == ''){
-						alert(inputLabel() + '를 입력해주세요.');
-						$(this).focus();
-						submitFlag = false;
-						return submitFlag;
-					}
-				}else if(inputId == 'userAddrDetail'){
-					if(inputValue == ''){
-						alert(inputLabel() + '를 입력해주세요.');
-						$(this).focus();
-						submitFlag = false;
-						return submitFlag;
-					}
-				}
+				};
 			});
 			
 			if(submitFlag) joinForm.submit();

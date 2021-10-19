@@ -1,60 +1,204 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="@{layout/default}">
 
-	<th:block layout:fragment="customTitle">
-		<div class="col-sm-6">
+<th:block layout:fragment="customTitle">
+	<div class="col-sm-6">
+	</div>
+</th:block>
+
+<!-- contents layout:fragment 정의 -->
+<th:block layout:fragment="customContents">
+	<!-- profile card start -->
+	<div class="card card-solid">
+		<div class="card-body pb-0">
+			<div class="row">
+				<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+					<div class="card bg-light d-flex flex-fill">
+						<div class="card-header text-muted border-bottom-0">
+							Digital Strategist
+						</div>
+						<div class="card-body pt-0">
+							<div class="row">
+								<div class="col-7">
+									<h2 class="lead"><b>스프링강사미리내</b></h2>
+									<p class="text-muted text-sm"><b>About: </b> Spring Framework / UX / Spring Boot /
+										Java Lover </p>
+									<ul class="ml-4 mb-0 fa-ul text-muted">
+										<li class="small"><span class="fa-li"><i
+													class="fas fa-lg fa-building"></i></span> Address: Demo Street 123,
+											Demo City 04312, NJ</li>
+										<li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
+											Phone #: + 800 - 12 12 23 52</li>
+									</ul>
+								</div>
+								<div class="col-5 text-center">
+									<img th:src="@{/AdminLTE/dist/img/callinLogo.png}" alt="user-avatar"
+										class="img-circle img-fluid">
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<div class="text-right">
+								<a href="#" class="btn btn-sm bg-teal">
+									<i class="fas fa-comments"></i>
+								</a>
+								<a href="#" class="btn btn-sm btn-primary">
+									<i class="fas fa-user"></i> View Profile
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+					<div class="card bg-light d-flex flex-fill">
+						<div class="card-header text-muted border-bottom-0">
+							Digital Strategist
+						</div>
+						<div class="card-body pt-0">
+							<div class="row">
+								<div class="col-7">
+									<h2 class="lead"><b>HTML강사몽탄</b></h2>
+									<p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist /
+										Coffee Lover </p>
+									<ul class="ml-4 mb-0 fa-ul text-muted">
+										<li class="small"><span class="fa-li"><i
+													class="fas fa-lg fa-building"></i></span> Address: Demo Street 123,
+											Demo City 04312, NJ</li>
+										<li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
+											Phone #: + 800 - 12 12 23 52</li>
+									</ul>
+								</div>
+								<div class="col-5 text-center">
+									<img th:src="@{/AdminLTE/dist/img/callinLogo.png}" alt="user-avatar"
+										class="img-circle img-fluid">
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<div class="text-right">
+								<a href="#" class="btn btn-sm bg-teal">
+									<i class="fas fa-comments"></i>
+								</a>
+								<a href="#" class="btn btn-sm btn-primary">
+									<i class="fas fa-user"></i> View Profile
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+					<div class="card bg-light d-flex flex-fill">
+						<div class="card-header text-muted border-bottom-0">
+							Digital Strategist
+						</div>
+						<div class="card-body pt-0">
+							<div class="row">
+								<div class="col-7">
+									<h2 class="lead"><b>제이쿼리강사달곤</b></h2>
+									<p class="text-muted text-sm"><b>About: </b> Web Designer / jQuery / Ajax /
+										달고나 Lover </p>
+									<ul class="ml-4 mb-0 fa-ul text-muted">
+										<li class="small"><span class="fa-li"><i
+													class="fas fa-lg fa-building"></i></span> Address: Demo Street 123,
+											Demo City 04312, NJ</li>
+										<li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
+											Phone #: + 800 - 12 12 23 52</li>
+									</ul>
+								</div>
+								<div class="col-5 text-center">
+									<img th:src="@{/AdminLTE/dist/img/callinLogo.png}" alt="user-avatar"
+										class="img-circle img-fluid">
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<div class="text-right">
+								<a href="#" class="btn btn-sm bg-teal">
+									<i class="fas fa-comments"></i>
+								</a>
+								<a href="#" class="btn btn-sm btn-primary">
+									<i class="fas fa-user"></i> View Profile
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+					<div class="card bg-light d-flex flex-fill">
+						<div class="card-header text-muted border-bottom-0">
+							Digital Strategist
+						</div>
+						<div class="card-body pt-0">
+							<div class="row">
+								<div class="col-7">
+									<h2 class="lead"><b>자바강사박자바</b></h2>
+									<p class="text-muted text-sm"><b>About: </b> Java / Web / jsp /
+										speed Lover </p>
+									<ul class="ml-4 mb-0 fa-ul text-muted">
+										<li class="small"><span class="fa-li"><i
+													class="fas fa-lg fa-building"></i></span> Address: Demo Street 123,
+											Demo City 04312, NJ</li>
+										<li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
+											Phone #: + 800 - 12 12 23 52</li>
+									</ul>
+								</div>
+								<div class="col-5 text-center">
+									<img th:src="@{/AdminLTE/dist/img/callinLogo.png}" alt="user-avatar"
+										class="img-circle img-fluid">
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<div class="text-right">
+								<a href="#" class="btn btn-sm bg-teal">
+									<i class="fas fa-comments"></i>
+								</a>
+								<a href="#" class="btn btn-sm btn-primary">
+									<i class="fas fa-user"></i> View Profile
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+					<div class="card bg-light d-flex flex-fill">
+						<div class="card-header text-muted border-bottom-0">
+							Digital Strategist
+						</div>
+						<div class="card-body pt-0">
+							<div class="row">
+								<div class="col-7">
+									<h2 class="lead"><b>DB강사홍디비</b></h2>
+									<p class="text-muted text-sm"><b>About: </b> MySQL / JDBC / DBMS /
+										Oracle </p>
+									<ul class="ml-4 mb-0 fa-ul text-muted">
+										<li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span>
+											Phone #: + 800 - 12 12 23 52</li>
+									</ul>
+								</div>
+								<div class="col-5 text-center">
+									<img th:src="@{/AdminLTE/dist/img/callinLogo.png}" alt="user-avatar"
+										class="img-circle img-fluid">
+								</div>
+							</div>
+						</div>
+						<div class="card-footer">
+							<div class="text-right">
+								<a href="#" class="btn btn-sm bg-teal">
+									<i class="fas fa-comments"></i>
+								</a>
+								<a href="#" class="btn btn-sm btn-primary">
+									<i class="fas fa-user"></i> View Profile
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	
-	</th:block>
-	
-	<!-- contents layout:fragment 정의 -->
-	<th:block layout:fragment="customContents">
-<div class="card card-success">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-12 col-lg-6 col-xl-4">
-                <div class="card mb-2 bg-gradient-dark">
-                  <img class="card-img-top" src="AdminLTE/dist/img/photo1.png" alt="Dist Photo 1">
-                  <div class="card-img-overlay d-flex flex-column justify-content-end">
-                    <h5 class="card-title text-primary text-white">Card Title</h5>
-                    <p class="card-text text-white pb-2 pt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor.</p>
-                    <a href="#" class="text-white">Last update 2 mins ago</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12 col-lg-6 col-xl-4">
-                <div class="card mb-2">
-                  <img class="card-img-top" src="AdminLTE/dist/img/photo2.png" alt="Dist Photo 2">
-                  <div class="card-img-overlay d-flex flex-column justify-content-center">
-                    <h5 class="card-title text-white mt-5 pt-2">Card Title</h5>
-                    <p class="card-text pb-2 pt-1 text-white">
-                      Lorem ipsum dolor sit amet, <br>
-                      consectetur adipisicing elit <br>
-                      sed do eiusmod tempor.
-                    </p>
-                    <a href="#" class="text-white">Last update 15 hours ago</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12 col-lg-6 col-xl-4">
-                <div class="card mb-2">
-                  <img class="card-img-top" src="AdminLTE/dist/img/photo3.jpg" alt="Dist Photo 3">
-                  <div class="card-img-overlay">
-                    <h5 class="card-title text-primary">Card Title</h5>
-                    <p class="card-text pb-1 pt-1 text-white">
-                      Lorem ipsum dolor <br>
-                      sit amet, consectetur <br>
-                      adipisicing elit sed <br>
-                      do eiusmod tempor. </p>
-                    <a href="#" class="text-primary">Last update 3 days ago</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>		
-	</th:block>
-	
+		<!-- /. profile card end -->
+	</div>
+</th:block>
+
 </html>
