@@ -20,8 +20,15 @@
 <!-- Theme style -->
 <link rel="stylesheet" th:href="@{/AdminLTE/dist/css/adminlte.min.css}">
 
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" th:href="@{/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+
+<!-- Tempusdominus Bootstrap 4 -->
+<script th:src="@{/AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script> 
+ 
 <script type="text/javascript" th:src="@{/AdminLTE/plugins/jquery/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js}"></script>
+
 <style>
 	.sidebar p,
 	.sidebar a,
@@ -30,6 +37,14 @@
 	}
 	nav i{
 		color: #FFDDDD;
+	}
+	div.detail-check {
+		display: inline-block;
+		margin-right: 20px;
+	}
+	button.lessBtn {
+		margin-right: 15px; 
+		margin-bottom: 5px;
 	}
 </style>
 </head>

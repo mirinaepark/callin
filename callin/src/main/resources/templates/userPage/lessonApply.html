@@ -5,16 +5,178 @@
 
 	<th:block layout:fragment="customTitle">
 		<div class="col-sm-6">
-			<h1 class="m-0">수강신청</h1>
 		</div>
-		<!-- /.col -->
-	
 	</th:block>
 	
 	<!-- contents layout:fragment 정의 -->
 	<th:block layout:fragment="customContents">
-		SPRING BOOT LAYOUT <br>
-		<a class="btn btn-outline-primary btn-sm" th:href="@{/login}">수강신청</a>
+		<div>
+		<!--시작 : 수업종류 & 난이도 선택 --------------------------------------------- -->
+			<div class="col-12 col-sm-6">
+				<div class="card card-primary card-outline card-outline-tabs">
+					<div class="card-header p-0 border-bottom-0">
+						<ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+							<li class="nav-item">
+						  		<a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">쌩기초</a>
+							</li>
+							<li class="nav-item">
+							  	<a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">일상회화</a>
+							</li>
+							<li class="nav-item">
+							  	<a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill" href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages" aria-selected="false">비즈니스</a>
+							</li>
+							<li class="nav-item">
+							  	<a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">시험대비</a>
+							</li>
+							<li class="nav-item">
+							  	<a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">중고급회화</a>
+							</li>
+							<li class="nav-item">
+							  	<a class="nav-link" id="custom-tabs-four-settings-tab" data-toggle="pill" href="#custom-tabs-four-settings" role="tab" aria-controls="custom-tabs-four-settings" aria-selected="false">상담후결정</a>
+							</li>
+							
+						</ul>
+					</div>
+					<div class="card-body">
+						<div class="tab-content" id="custom-tabs-four-tabContent">
+							<div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+								<div class="form-check" style="display: inline-block; margin-right: 20px;">
+									<input class="form-check-input" type="radio" name="radio1" id="radioId">
+									<label for="radioId" class="form-check-label">Radiasdasdo </label>
+								</div>
+								<div class="form-check" style="display: inline-block; margin-right: 20px;">
+									<input class="form-check-input" type="radio" name="radio1" id="radioId2">
+									<label for="radioId2" class="form-check-label">Radio </label>
+								</div>
+								<div class="form-check" style="display: inline-block;">
+									<input class="form-check-input" type="radio" name="radio1" id="radioId3">
+									<label for="radioId3" class="form-check-label">Radio </label>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+							</div>
+							<div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
+							</div>
+							<div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
+							</div>
+							<div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
+							</div>
+							<div class="tab-pane fade" id="custom-tabs-four-settings" role="tabpanel" aria-labelledby="custom-tabs-four-settings-tab">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--끝 : 수업종류 & 난이도 선택  ------------------------------- -->
+			
+			<!--시작 : 상세 수업  --------------------------------------- -->
+			<div class="col-12 col-sm-6">
+				<div class="card card-outline card-warning">
+					<div class="card-header">
+						<h3 class="card-title">상세 수업 유형을 선택하세요.</h3>
+					</div>
+				  <!-- /.card-header -->
+					<div class="card-body">
+						<!-- 수업기간 선택 -->
+						<div>
+							<button type="button" class="btn btn-outline-danger btn-xs lessBtn">수업기간</button>			
+							<div class="detail-check">
+								<input class="detail-check-input" type="radio" name="detail" id="detailId01">
+								<label for="detailId01" class="detail-check-label">4주</label>
+							</div>
+							<div class="detail-check">
+								<input class="detail-check-input" type="radio" name="detail" id="detailId02">
+								<label for="detailId02" class="detail-check-label">12주 </label>
+							</div>
+							<div class="detail-check">
+								<input class="detail-check-input" type="radio" name="detail" id="detailId03">
+								<label for="detailId03" class="detail-check-label">24주 </label>
+							</div>
+							<div class="detail-check">
+								<input class="detail-check-input" type="radio" name="detail" id="detailId04">
+								<label for="detailId04" class="detail-check-label">48주 </label>
+							</div>
+						</div>
+						
+						<!-- 수업횟수 선택 -->
+						<div>
+							<button type="button" class="btn btn-outline-danger btn-xs lessBtn">수업횟수</button>			
+							<div class="detail-check">
+								<input class="detail-check-input" type="radio" name="detail-num" id="detail-num01">
+								<label for="detail-num01" class="detail-check-label">주2회(화,목)</label>
+							</div>
+							<div class="detail-check">
+								<input class="detail-check-input" type="radio" name="detail-num" id="detail-num02">
+								<label for="detail-num02" class="detail-check-label">주3회(월,수,금) </label>
+							</div>
+							<div class="detail-check">
+								<input class="detail-check-input" type="radio" name="detail-num" id="detail-num03">
+								<label for="detail-num03" class="detail-check-label">주5회(월,화,수,목,금) </label>
+							</div>
+						</div>
+						
+						<!-- 수업시간 선택 -->
+						<div>
+							<button type="button" class="btn btn-outline-danger btn-xs lessBtn">수업시간</button>					
+							<div class="detail-check">
+								<input class="detail-check-input" type="radio" name="detail-time" id="detail-time01">
+								<label for="detail-time01" class="detail-check-label">10분</label>
+							</div>
+							<div class="detail-check">
+								<input class="detail-check-input" type="radio" name="detail-time" id="detail-time02">
+								<label for="detail-time02" class="detail-check-label">20분</label>
+							</div>
+						</div>
+					</div>
+				<!-- /.card-body -->
+				</div>
+			<!-- /.card -->
+			</div>
+			<!--끝 : 상세 수업  --------------------------------------- -->
+			
+			<!--시작 : 날짜 & 시간  --------------------------------------- -->
+			<div class="col-12 col-sm-6">
+				<div class="card card-outline card-warning">
+					<div class="card-header">
+						<h3 class="card-title">날짜와 시간을 선택하세요.</h3>
+					</div>
+					<div class="col-12 col-sm-9" style="margin-top: 18px;">
+					<div class="form-group">
+                    	<div class="input-group date" id="reservationdatetime" data-target-input="nearest">
+	                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdatetime">
+	                        <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
+                       		    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        	</div>
+	                    </div>
+	                </div>
+	                </div>
+					</div>
+				</div>
+			</div>
+			<!--끝 : 날짜 & 시간  --------------------------------------- -->
+			
+			<!--시작 : 가격  --------------------------------------- -->
+			<div class="col-md-3 col-sm-6 col-12">
+				<div class="info-box">
+					<span class="info-box-icon bg-warning">주문금액</span>
+				
+					<div class="info-box-content">
+						<span class="info-box-number">월 0원 (총 0 원)</span>
+					</div>
+				</div>
+			</div>
+			<!--끝 : 가격  --------------------------------------- -->
+			
+			<div class="col-md-3 col-sm-6 col-12">
+				<td>
+	            	<button type="button" class="btn btn-block btn-warning btn-lg">수강신청</button>
+	            </td>
+            </div>        
+			<script type="text/javascript">
+				$(document).ready(function(){
+					  //Date and time picker
+				    $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+				});
+			</script>	
 	</th:block>
-
 </html>
